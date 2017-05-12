@@ -15,7 +15,7 @@ public class RowsNColumns : MonoBehaviour {
 	float Lado;
 	// Use this for initialization
 	void Start () {
-		Lado = CasillaSize.transform.localScale.x-0.1f;
+		Lado = CasillaSize.transform.localScale.x;
 		Refresh ();
 	}
 	// Update is called once per frame

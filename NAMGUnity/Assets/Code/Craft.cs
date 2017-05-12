@@ -15,13 +15,12 @@ public class Craft : MonoBehaviour {
 	int[] playable;
 	int colcont;
 	void Start () {
-		colors = new Color[6] {new Color (1,0,0, 0.5f),new Color (1,1,0, 0.5f),new Color (0,0,1, 0.5f), new Color (0,1,1, 0.5f),new Color (0,1,0, 0.5f),new Color (1,0,1, 0.5f)};
+		colors = new Color[6] {new Color (1,0,0, 0.5f),new Color (1,1,0, 0.5f),new Color (0,0,1, 0.5f), new Color (1,0.5f,0, 0.5f),new Color (0,1,0, 0.5f),new Color (1,0,1, 0.5f)};
 		rect = GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().rect;
 		Nums = new GameObject[6] { Troj, Tama, Tazu, Tnar, Tver, Tlila };
-		Recipes = new Recipe[]{new Recipe (30, 4, 0, 0, 4, 0, new Sprite (), 20)};
+		Recipes = new Recipe[]{new Recipe (30, 4, 4, 0, 4, 0, new Sprite (), 20)};
 		playable = new int[6];
 		CurrentRecipe = Recipes [0];
-		Refresh ();
 		ShowRecipe (CurrentRecipe);
 	}
 	
@@ -43,13 +42,11 @@ public class Craft : MonoBehaviour {
 		foreach (GameObject g in Nums) {
 			playable [colcont] = 0;
 			if (g.GetComponent<Text> ().text != 0.ToString ()) {
-				g.SetActive (true);
 				playable [colcont] = 1;
 			}
 			colcont++;
 		}
 		colcont = 0;
-
 		while ((playable [colcont].Equals (0))&&( colcont<playable.Length)) {
 			colcont++;
 		}
@@ -68,20 +65,60 @@ public class Craft : MonoBehaviour {
 
 	public void CorrectRect(int num){
 		Debug.Log (num.ToString());
-		if (num.ToString ().Equals (Nums [colcont].GetComponent<Text> ().text)) {
-			MouseToTouch.pintando = false;
+		if (num.ToString ().Equals(Nums [colcont].GetComponent<Text>().text)) {
+			if (colcont.Equals(1)){
+				if (GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().Corroborar (colors[3],CurrentRecipe.nar)) {
+					MouseToTouch.pintando = false;
+					Debug.Log ("Lo pasa");
+					Nums [colcont].GetComponent<Text> ().color = Color.green;
+					colcont++;
 
-			Nums [colcont].GetComponent<Text> ().color = Color.green;
-			colcont++;
-		
-			while ((playable [colcont].Equals (0)) && (colcont < playable.Length)) {
-				colcont++;
+					while ((playable [colcont].Equals (0)) && (colcont < 3)) {
+						colcont++;
+					}
+					if (colcont.Equals (3)) {
+						Debug.Log ("Objecto acabado");
+					} else {
+						rect.GetComponent<SpriteRenderer> ().color = colors [colcont];
+					}
+				}
 			}
-			if (colcont.Equals (playable.Length)) {
-				Debug.Log ("Objecto acabado");
-			} else {
-				rect.GetComponent<SpriteRenderer> ().color = colors [colcont];
+			else{	
+				if (colcont.Equals (2)) {
+						if ((GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().Corroborar (colors [4], CurrentRecipe.ver)) && (GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().Corroborar (colors [5],CurrentRecipe.lila))) {
+								MouseToTouch.pintando = false;
+								Nums [colcont].GetComponent<Text> ().color = Color.green;
+								colcont++;
+
+								while ((playable [colcont].Equals (0)) && (colcont < 3)) {
+									colcont++;
+								}
+								if (colcont.Equals (3)) {
+									Debug.Log ("Objecto acabado");
+								} else {
+									rect.GetComponent<SpriteRenderer> ().color = colors [colcont];
+								}
+							}
+						}
+						else
+						{
+							MouseToTouch.pintando = false;
+
+							Nums [colcont].GetComponent<Text> ().color = Color.green;
+							colcont++;
+
+							while ((playable [colcont].Equals (0)) && (colcont < 3)) {
+								colcont++;
+							}
+							if (colcont.Equals (3)) {
+								Debug.Log ("Objecto acabado");
+							} else {
+								rect.GetComponent<SpriteRenderer> ().color = colors [colcont];
+							}
+						}
+					}
+				}
+
 			}
-		}
-	}
 }
+

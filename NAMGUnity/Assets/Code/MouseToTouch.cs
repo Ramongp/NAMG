@@ -13,19 +13,40 @@ public class MouseToTouch : MonoBehaviour {
 	public GameObject CasillaSize;
 	RowsNColumns Borders;
 	public static bool pintando;
+	Stack <GameObject> CasillasYaPint;
+	Stack <Color> CasillasYaCol;
+	Color Roj,Ama,Azu,Nar,Verd,Lila;
 	// Use this for initialization
 	void Start () {
 		pintando = false;
+		CasillasYaPint = new Stack<GameObject> ();
+		CasillasYaCol = new Stack<Color>();
+		//Colores
+
+		Roj = new Color (1, 0, 0, 0.5f);Ama = new Color (1, 1, 0, 0.5f);Azu = new Color (0, 0, 1, 0.5f);Nar = new Color (1,0.5f,0,0.5f);Verd = new Color (0, 1, 0, 0.5f);
+		Lila = new Color (1, 0, 1, 0.5f);
+
 		Borders = this.gameObject.GetComponent<RowsNColumns> ();
 		rect.GetComponent<SpriteRenderer> ().color =new Color (1,0,0, 0.5f);
 		mat = new Casilla[numFilas+1,numFilas+1];
 		int cont=1;
+		//Colocar
+		float Lado = CasillaSize.transform.localScale.x;
+		Vector3 OriginalColocar = new Vector3( GameObject.Find ("Quad " + cont).transform.position.x,GameObject.Find ("Quad " + cont).transform.position.y,0);
+		Vector3 Colocar = new Vector3( GameObject.Find ("Quad " + cont).transform.position.x,GameObject.Find ("Quad " + cont).transform.position.y,0);
+		//Debug.Log("X "+Colocar.x.ToString()+" Y "+Colocar.y.ToString()+" Z "+Colocar.x.ToString());
 		for(int i=0;i<=numFilas;i++){
 			for (int u =0;u<=numFilas;u++)
 			{
-				mat [i, u] = new Casilla (GameObject.Find ("Quad " + cont), i, u);
+				GameObject g = GameObject.Find ("Quad " + cont);
+				GameObject r = GameObject.Find ("R" + cont);
+				mat [i, u] = new Casilla (g, i, u);
 				cont+=1;
+				g.transform.position=Colocar;
+				r.transform.position = Colocar;
+				Colocar= new Vector3 ((Colocar.x+Lado),Colocar.y,Colocar.z);
 			}
+			Colocar= new Vector3 (OriginalColocar.x,(Colocar.y-Lado),Colocar.z);
 		} 
 	}
 	
@@ -79,7 +100,7 @@ public class MouseToTouch : MonoBehaviour {
 								}
 							}
 						}
-						GameObject.Find (hit.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
+						//GameObject.Find (hit.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
 						originalPos = hit.transform.position;
 						rect.transform.position = originalPos;
 						Borders.GetStart (hit.collider.transform.position, f, c);
@@ -152,7 +173,7 @@ public class MouseToTouch : MonoBehaviour {
 			if (Physics.Raycast (touchPosition, Vector3.forward, out hit2)) {
 				if (hit2.collider.tag.Equals ("Quad")) {
 					if (rect.activeSelf.Equals (true)) {
-						GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
+					//	GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
 						bool found = false;
 						int f = 0, c = 0;
 						while (!found) {
@@ -167,7 +188,7 @@ public class MouseToTouch : MonoBehaviour {
 								}
 							}
 						}
-						GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
+					//	GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
 						Rellenar (start, end);
 						//Corroborar area
 						Craft g = GameObject.Find ("CreadorRecetas").GetComponent<Craft>();
@@ -181,6 +202,7 @@ public class MouseToTouch : MonoBehaviour {
 			}
 			rect.transform.localScale = new Vector3 (CasillaSize.transform.localScale.x, CasillaSize.transform.localScale.y, rect.transform.localScale.z);
 			rect.SetActive (false);
+			Borders.Refresh ();
 
 
 			break;
@@ -191,11 +213,23 @@ public class MouseToTouch : MonoBehaviour {
 	{
 		Color colorRect = rect.GetComponent<SpriteRenderer> ().color;
 		if (start.f == end.f && start.c == end.c) {
-			end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+			if (end.g.GetComponent<MeshRenderer> ().material.color.Equals (Color.white) || end.g.GetComponent<MeshRenderer> ().material.color.Equals (Color.white))
+				end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+			else {
+				CasillasYaPint.Push (end.g);
+				CasillasYaCol.Push (end.g.GetComponent<MeshRenderer> ().material.color );
+				end.g.GetComponent<MeshRenderer> ().material.color = Colorear (end.g.GetComponent<MeshRenderer> ().material.color, rect.GetComponent<SpriteRenderer> ().color);
+			}
 			return;
 		} else {
 			if (start.f == end.f) {
-				end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+				if (end.g.GetComponent<MeshRenderer> ().material.color.Equals (Color.white))
+					end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+				else {
+					CasillasYaPint.Push (end.g);
+					CasillasYaCol.Push (end.g.GetComponent<MeshRenderer> ().material.color );
+					end.g.GetComponent<MeshRenderer> ().material.color = Colorear (end.g.GetComponent<MeshRenderer> ().material.color, rect.GetComponent<SpriteRenderer> ().color);
+				}
 				if (start.c > end.c) {
 					Rellenar (start, mat [end.f, end.c + 1]);
 				} else {
@@ -203,7 +237,13 @@ public class MouseToTouch : MonoBehaviour {
 				}
 			} else {
 				if (start.c == end.c) {
-					end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+					if (end.g.GetComponent<MeshRenderer> ().material.color.Equals (Color.white))
+						end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+					else {
+						CasillasYaPint.Push (end.g);
+						CasillasYaCol.Push (end.g.GetComponent<MeshRenderer> ().material.color );
+						end.g.GetComponent<MeshRenderer> ().material.color = Colorear (end.g.GetComponent<MeshRenderer> ().material.color, rect.GetComponent<SpriteRenderer> ().color);
+					}
 					if (start.f > end.f) {
 						Rellenar (start, mat [end.f + 1, end.c]);
 					} else {
@@ -211,24 +251,32 @@ public class MouseToTouch : MonoBehaviour {
 					}
 				} else {
 					if (start.f < end.f) {
-						end.g.GetComponent<MeshRenderer> ().material.color =colorRect;
+						if (end.g.GetComponent<MeshRenderer> ().material.color.Equals (Color.white))
+							end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+						else {
+							CasillasYaPint.Push (end.g);
+							CasillasYaCol.Push (end.g.GetComponent<MeshRenderer> ().material.color );
+							end.g.GetComponent<MeshRenderer> ().material.color = Colorear (end.g.GetComponent<MeshRenderer> ().material.color, rect.GetComponent<SpriteRenderer> ().color);
+						}
 						Rellenar (start, mat [end.f - 1, end.c]);
 						if (start.c > end.c) {
-							Rellenar (start, mat [end.f - 1, end.c + 1]);
-							Rellenar (start, mat [end.f, end.c + 1]);
+							Rellenar (mat[end.f,start.c], mat [end.f, end.c + 1]);
 						} else {
-							Rellenar (start, mat [end.f - 1, end.c - 1]);
-							Rellenar (start, mat [end.f, end.c - 1]);
+							Rellenar (mat[end.f,start.c], mat [end.f, end.c - 1]);
 						}
 					} else {
-						end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+						if (end.g.GetComponent<MeshRenderer> ().material.color.Equals (Color.white))
+							end.g.GetComponent<MeshRenderer> ().material.color = colorRect;
+						else {
+							CasillasYaPint.Push (end.g);
+							CasillasYaCol.Push (end.g.GetComponent<MeshRenderer> ().material.color );
+							end.g.GetComponent<MeshRenderer> ().material.color = Colorear (end.g.GetComponent<MeshRenderer> ().material.color, rect.GetComponent<SpriteRenderer> ().color);
+						}
 						Rellenar (start, mat [end.f + 1, end.c]);
 						if (start.c > end.c) {
-							Rellenar (start, mat [end.f + 1, end.c + 1]);
-							Rellenar (start, mat [end.f, end.c + 1]);
+							Rellenar (mat[end.f,start.c], mat [end.f, end.c + 1]);
 						} else {
-							Rellenar (start, mat [end.f + 1, end.c - 1]);
-							Rellenar (start, mat [end.f, end.c - 1]);
+							Rellenar (mat[end.f,start.c], mat [end.f, end.c - 1]);
 						}
 					}
 					return;
@@ -239,6 +287,11 @@ public class MouseToTouch : MonoBehaviour {
 
 	public void Refresh()
 	{
+		while (CasillasYaPint.Count > 0) {
+			GameObject g = CasillasYaPint.Pop ();
+			g.GetComponent<MeshRenderer> ().material.color = CasillasYaCol.Pop ();
+		}
+
 		for (int i = 0; i <= numFilas; i++) {
 			for (int u = 0; u <= numFilas; u++) {
 				if(mat [i, u].g.GetComponent<MeshRenderer> ().material.color.Equals(rect.GetComponent<SpriteRenderer>().color))
@@ -263,6 +316,45 @@ public class MouseToTouch : MonoBehaviour {
 	public void Blue()
 	{
 		rect.GetComponent<SpriteRenderer> ().color = new Color (0,0,1, 0.5f);
+	}
+
+
+	Color Colorear ( Color C1,Color C2)
+	{
+		//Debug.Log (C1.ToString()+" "+ C2.ToString());
+		if (C1.Equals(Roj)) {
+			if (C2.Equals (Ama))
+				return Nar;
+			else
+				return Lila;
+		}
+
+		if (C1.Equals(Ama)) {
+			return Verd;
+		}
+
+		return Color.grey;
+	}
+
+
+	public bool Corroborar(Color C,int Num){
+
+		int cont = 0;
+		Stack<GameObject> pila = CasillasYaPint;
+		Stack<GameObject> save = new Stack<GameObject> ();
+		while (pila.Count > 0) {
+			GameObject color = pila.Pop ();
+			if (color.GetComponent<MeshRenderer> ().material.color.Equals (C)) {
+				Debug.Log ("Son iguales");
+				cont++;
+			}
+			save.Push (color);
+		}
+		while (save.Count > 0) {
+			GameObject color2 = save.Pop ();
+			CasillasYaPint.Push (color2);
+		}
+		return cont.Equals (Num);
 	}
 }
 
