@@ -14,24 +14,40 @@ public class Craft : MonoBehaviour {
 	Color[] colors;
 	int[] playable;
 	int colcont;
+	public Slider tiempo;
+	bool startcrafting;
 	GameObject reset;
+	string action;
+	Acciones acciones;
 	void Start () {
+		acciones = GameObject.Find ("Actions").GetComponent<Acciones> ();
+		startcrafting = false;
 		reset = GameObject.Find ("Reset");
 		colors = new Color[6] {new Color (1,0,0, 0.5f),new Color (1,1,0, 0.5f),new Color (0,1,1, 0.5f), new Color (1,0.5f,0, 0.5f),new Color (0,1,0, 0.5f),new Color (1,0,1, 0.5f)};
 		rect = GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().rect;
 		Nums = new GameObject[6] { Troj, Tama, Tazu, Tnar, Tver, Tlila };
-		Recipes = new Recipe[]{new Recipe (30, 0, 0, 0, 4, 0, new Sprite (), 20)};
-		CurrentRecipe = Recipes [0];
-		ShowRecipe (CurrentRecipe);
+		//Recipes = new Recipe[]{new Recipe (30, 4, 0, 0, 4, 0, new Sprite (), 20)};
+		//CurrentRecipe = Recipes [0];
+		//ShowRecipe (CurrentRecipe);
+		foreach (GameObject g in Nums) {
+			g.SetActive (false);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (startcrafting) {
+			tiempo.value -= Time.deltaTime/CurrentRecipe.time;
+		}
 	}
-	public void ShowRecipe(Recipe r)
+	public void ShowRecipe(Recipe r,string action)
 	{
-		
+		foreach (GameObject g in Nums) {
+			g.SetActive (true);
+		}
+		this.action = action;
+		startcrafting = true;
+		CurrentRecipe = r;
 		Troj.GetComponent<Text>().text = r.roj.ToString();
 		Tama.GetComponent<Text>().text= r.ama.ToString();
 		Tazu.GetComponent<Text>().text= r.azu.ToString();
@@ -39,6 +55,10 @@ public class Craft : MonoBehaviour {
 		Tver.GetComponent<Text>().text= r.ver.ToString();
 		Tlila.GetComponent<Text>().text = r.lila.ToString();
 
+		MouseToTouch.pintando = false;
+		tiempo.value = 1;
+
+		colcont = 0;
 		if ((r.roj.Equals (0)) && (r.nar.Equals (0)) && (r.lila.Equals (0))) {
 			colcont++;
 			rect.GetComponent<SpriteRenderer> ().color = colors [colcont];
@@ -53,8 +73,11 @@ public class Craft : MonoBehaviour {
 
 	public void Refresh()
 	{
+		
 		foreach (GameObject g in Nums) {
 			g.SetActive (false);
+			g.GetComponent<Text> ().color = new Color(0.19f,0.19f,0.19f);
+			GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().RestartTable ();
 		}
 	}
 
@@ -74,7 +97,11 @@ public class Craft : MonoBehaviour {
 					Nums [colcont].GetComponent<Text> ().color = Color.green;
 				}
 				if ((CurrentRecipe.ama.Equals (0)) && (CurrentRecipe.nar.Equals (0)) && (CurrentRecipe.ver.Equals (0)) && (CurrentRecipe.lila.Equals (0)) && (CurrentRecipe.azu.Equals (0))) {
+					//Objeto Acabado
+					startcrafting = false;
 					Debug.Log ("Objeto Acabado");
+					reset.GetComponent<Image> ().color = Color.white;
+					acciones.ObjetoHecho (tiempo.value > 0, action);
 				} 
 				else {
 					if ((CurrentRecipe.ama.Equals (0)) && (CurrentRecipe.nar.Equals (0)) && (CurrentRecipe.ver.Equals (0))) {
@@ -109,7 +136,14 @@ public class Craft : MonoBehaviour {
 				Debug.Log ("Lo pasa");
 
 				if((CurrentRecipe.azu.Equals(0))&&(CurrentRecipe.ver.Equals(0))&&(CurrentRecipe.lila.Equals(0)))
-					{Debug.Log ("Objeto Acabado");}
+					{
+					//Objeto acabado
+					startcrafting = false;
+					Debug.Log ("Objeto Acabado");
+					reset.GetComponent<Image> ().color = Color.white;
+					acciones.ObjetoHecho (tiempo.value > 0, action);
+				}
+			
 					else{
 					colcont ++;
 					MouseToTouch.pintando = false;
@@ -123,8 +157,24 @@ public class Craft : MonoBehaviour {
 		case 2:
 			int verde = GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().Corroborar (colors [4]);
 			int lila = GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().Corroborar (colors [5]);
-			if ((verde.Equals (CurrentRecipe.ver)) && (lila.Equals (CurrentRecipe.lila)) && ((verde + lila - num).Equals (CurrentRecipe.azu))) {
+			Debug.Log ("Caso azul: " + verde.ToString () + " " + lila.ToString () + " " + num.ToString () + " DEberia dar " + CurrentRecipe.azu.ToString ());
+			if ((verde.Equals (CurrentRecipe.ver)) && (lila.Equals (CurrentRecipe.lila)) && ((num- (verde + lila)).Equals (CurrentRecipe.azu))) {
+
+				if (CurrentRecipe.azu != 0) {
+					Tazu.GetComponent<Text> ().color = Color.green;
+				}
+
+				if (CurrentRecipe.ver != 0) {
+					Tver.GetComponent<Text> ().color = Color.green;
+				}
+				if (CurrentRecipe.lila != 0) {
+					Tlila.GetComponent<Text> ().color = Color.green;
+				}
+
+				startcrafting = false;
 				Debug.Log("Objeto Acabado");
+				reset.GetComponent<Image> ().color = Color.white;
+				acciones.ObjetoHecho (tiempo.value > 0, action);
 			}
 
 

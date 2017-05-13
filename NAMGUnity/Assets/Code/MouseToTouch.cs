@@ -5,19 +5,25 @@ using UnityEngine.UI;
 
 public class MouseToTouch : MonoBehaviour {
 
-	int numFilas = 9;
+	int numFilas = 9, Fila,Columna;
 	Casilla start, end;
 	public Casilla[,] mat;
 	Vector3 originalPos,finalPos;
-	public GameObject rect;
+	public GameObject rect, result;
 	public GameObject CasillaSize;
 	RowsNColumns Borders;
-	public static bool pintando;
+	public static bool pintando, crafteando;
 	Stack <GameObject> CasillasYaPint;
 	Stack <Color> CasillasYaCol;
 	Color Roj,Ama,Azu,Nar,Verd,Lila;
+
 	// Use this for initialization
 	void Start () {
+		crafteando = false;
+		//Resultado en esquina
+		result =GameObject.Find("Resultado");
+		Stopresult ();
+
 		pintando = false;
 		CasillasYaPint = new Stack<GameObject> ();
 		CasillasYaCol = new Stack<Color>();
@@ -53,6 +59,11 @@ public class MouseToTouch : MonoBehaviour {
 	// Update is called once per frame
 		void Update () {
 
+
+		//mover resultado de multiplicación
+		if (result.GetComponent<Text> ().text != " ") {
+			result.transform.Translate(Vector3.up * Time.deltaTime);
+		}
 					// Handle native touch events
 					foreach (Touch touch in Input.touches) {
 						HandleTouch (touch.fingerId, Camera.main.ScreenToWorldPoint (touch.position), touch.phase);
@@ -75,35 +86,37 @@ public class MouseToTouch : MonoBehaviour {
 		private void HandleTouch(int touchFingerId, Vector3 touchPosition, TouchPhase touchPhase) {
 		switch (touchPhase) {
 		case TouchPhase.Began:
-			if (!pintando) {
+			if (crafteando) {
+				if (!pintando) {
 
-				Ray ray = Camera.main.ScreenPointToRay (touchPosition);
-				RaycastHit hit;
-				if (Physics.Raycast (touchPosition, Vector3.forward, out hit)) {
-					if (hit.collider.tag.Equals ("Quad")) {
-						rect.SetActive (true);
+					//Ray ray = Camera.main.ScreenPointToRay (touchPosition);
+					RaycastHit hit;
+					if (Physics.Raycast (touchPosition, Vector3.forward, out hit)) {
+						if (hit.collider.tag.Equals ("Quad")) {
+							rect.SetActive (true);
 
-						//ya estamos pintando
-						pintando=true;
-						//buscar start
-						bool found = false;
-						int f = 0, c = 0;
-						while (!found) {
-							if (hit.collider.name.Equals (mat [f, c].g.name)) {
-								start = mat [f, c];
-								found = true;
-							} else {
-								c += 1;
-								if (c == numFilas + 1) {
-									c = 0;
-									f += 1;
+							//ya estamos pintando
+							pintando = true;
+							//buscar start
+							bool found = false;
+							int f = 0, c = 0;
+							while (!found) {
+								if (hit.collider.name.Equals (mat [f, c].g.name)) {
+									start = mat [f, c];
+									found = true;
+								} else {
+									c += 1;
+									if (c == numFilas + 1) {
+										c = 0;
+										f += 1;
+									}
 								}
 							}
+							//GameObject.Find (hit.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
+							originalPos = hit.transform.position;
+							rect.transform.position = originalPos;
+							Borders.GetStart (hit.collider.transform.position, f, c);
 						}
-						//GameObject.Find (hit.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
-						originalPos = hit.transform.position;
-						rect.transform.position = originalPos;
-						Borders.GetStart (hit.collider.transform.position, f, c);
 					}
 				}
 			}
@@ -168,7 +181,7 @@ public class MouseToTouch : MonoBehaviour {
 
 
 		case TouchPhase.Ended:
-			Ray ray2 = Camera.main.ScreenPointToRay (touchPosition);
+			//Ray ray2 = Camera.main.ScreenPointToRay (touchPosition);
 			RaycastHit hit2;
 			if (Physics.Raycast (touchPosition, Vector3.forward, out hit2)) {
 				if (hit2.collider.tag.Equals ("Quad")) {
@@ -190,6 +203,15 @@ public class MouseToTouch : MonoBehaviour {
 						}
 						//	GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
 						Rellenar (start, end);
+
+						//Mostrar multiplicacion
+						Fila = Borders.Fcont;
+						Columna = Borders.Ccont;
+						result.transform.position= new Vector3(touchPosition.x,touchPosition.y,0);
+						result.GetComponent<Text> ().text = Fila.ToString () + " X " + Columna.ToString ();
+						Invoke ("Changeresult", 1);
+						Invoke ("Stopresult", 2);
+
 						//Corroborar area
 						Craft g = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
 						g.CorrectRect (Borders.Fcont * Borders.Ccont);
@@ -295,21 +317,32 @@ public class MouseToTouch : MonoBehaviour {
 
 	public void Refresh()
 	{
-		while (CasillasYaPint.Count > 0) {
-			GameObject g = CasillasYaPint.Pop ();
-			g.GetComponent<MeshRenderer> ().material.color = CasillasYaCol.Pop ();
-		}
-
-		for (int i = 0; i <= numFilas; i++) {
-			for (int u = 0; u <= numFilas; u++) {
-				if(mat [i, u].g.GetComponent<MeshRenderer> ().material.color.Equals(rect.GetComponent<SpriteRenderer>().color))
-					mat [i, u].g.GetComponent<MeshRenderer> ().material.color = Color.white;
+		if (crafteando) {
+			while (CasillasYaPint.Count > 0) {
+				GameObject g = CasillasYaPint.Pop ();
+				g.GetComponent<MeshRenderer> ().material.color = CasillasYaCol.Pop ();
 			}
-		} 
-		pintando = false;
+
+			for (int i = 0; i <= numFilas; i++) {
+				for (int u = 0; u <= numFilas; u++) {
+					if (mat [i, u].g.GetComponent<MeshRenderer> ().material.color.Equals (rect.GetComponent<SpriteRenderer> ().color))
+						mat [i, u].g.GetComponent<MeshRenderer> ().material.color = Color.white;
+				}
+			} 
+			pintando = false;
+		}
 	}
 
-
+	public void RestartTable()
+	{
+		for (int i = 0; i <= numFilas; i++) {
+			for (int u = 0; u <= numFilas; u++) {
+					mat [i, u].g.GetComponent<MeshRenderer> ().material.color = Color.white;
+			}
+			CasillasYaPint.Clear ();
+			CasillasYaPint.Clear ();
+		} 
+	}
 
 	public void Yellow()
 	{
@@ -363,6 +396,18 @@ public class MouseToTouch : MonoBehaviour {
 			CasillasYaPint.Push (color2);
 		}
 		return cont;
+	}
+
+
+	void Changeresult()
+	{
+		Debug.Log (Fila.ToString () + " " +Columna.ToString ());
+		result.GetComponent<Text> ().text = (Fila * Columna).ToString ();
+	}
+
+	void Stopresult()
+	{
+		result.GetComponent<Text> ().text = " ";
 	}
 }
 
