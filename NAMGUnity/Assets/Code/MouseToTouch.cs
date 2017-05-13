@@ -23,7 +23,7 @@ public class MouseToTouch : MonoBehaviour {
 		CasillasYaCol = new Stack<Color>();
 		//Colores
 
-		Roj = new Color (1, 0, 0, 0.5f);Ama = new Color (1, 1, 0, 0.5f);Azu = new Color (0, 0, 1, 0.5f);Nar = new Color (1,0.5f,0,0.5f);Verd = new Color (0, 1, 0, 0.5f);
+		Roj = new Color (1, 0, 0, 0.5f);Ama = new Color (1, 1, 0, 0.5f);Azu = new Color (0, 1, 1, 0.5f);Nar = new Color (1,0.5f,0,0.5f);Verd = new Color (0, 1, 0, 0.5f);
 		Lila = new Color (1, 0, 1, 0.5f);
 
 		Borders = this.gameObject.GetComponent<RowsNColumns> ();
@@ -173,7 +173,7 @@ public class MouseToTouch : MonoBehaviour {
 			if (Physics.Raycast (touchPosition, Vector3.forward, out hit2)) {
 				if (hit2.collider.tag.Equals ("Quad")) {
 					if (rect.activeSelf.Equals (true)) {
-					//	GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
+						//	GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
 						bool found = false;
 						int f = 0, c = 0;
 						while (!found) {
@@ -188,10 +188,10 @@ public class MouseToTouch : MonoBehaviour {
 								}
 							}
 						}
-					//	GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
+						//	GameObject.Find (hit2.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
 						Rellenar (start, end);
 						//Corroborar area
-						Craft g = GameObject.Find ("CreadorRecetas").GetComponent<Craft>();
+						Craft g = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
 						g.CorrectRect (Borders.Fcont * Borders.Ccont);
 
 
@@ -200,9 +200,17 @@ public class MouseToTouch : MonoBehaviour {
 				}
 
 			}
+			else
+			{
+				if(rect.activeSelf.Equals(true)){
+				Debug.Log ("Fuera");
+				Borders.Refresh ();
+				pintando = false;
+				}
+			}
 			rect.transform.localScale = new Vector3 (CasillaSize.transform.localScale.x, CasillaSize.transform.localScale.y, rect.transform.localScale.z);
 			rect.SetActive (false);
-			Borders.Refresh ();
+
 
 
 			break;
@@ -337,7 +345,7 @@ public class MouseToTouch : MonoBehaviour {
 	}
 
 
-	public bool Corroborar(Color C,int Num){
+	public int Corroborar(Color C){
 
 		int cont = 0;
 		Stack<GameObject> pila = CasillasYaPint;
@@ -354,7 +362,7 @@ public class MouseToTouch : MonoBehaviour {
 			GameObject color2 = save.Pop ();
 			CasillasYaPint.Push (color2);
 		}
-		return cont.Equals (Num);
+		return cont;
 	}
 }
 
