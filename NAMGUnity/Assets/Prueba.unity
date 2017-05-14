@@ -12700,6 +12700,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071476700}
   - component: {fileID: 1071476701}
+  - component: {fileID: 1071476702}
   m_Layer: 0
   m_Name: Caballero
   m_TagString: Untagged
@@ -12714,8 +12715,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1071476699}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.53, y: -4.04, z: 10}
-  m_LocalScale: {x: 4, y: 9.342759, z: 1}
+  m_LocalPosition: {x: 9.51, y: -4.26, z: 10}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 1085651969}
   m_RootOrder: 0
@@ -12751,10 +12752,27 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300004, guid: 118685e09f24a2d4e8baf847a9f156f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1071476702
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1071476699}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ddcd5b22a9ea032418c604a579fce99f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1071885947
 GameObject:
   m_ObjectHideFlags: 0
@@ -12831,6 +12849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1074764647}
   - component: {fileID: 1074764648}
+  - component: {fileID: 1074764649}
   m_Layer: 0
   m_Name: Arquera
   m_TagString: Untagged
@@ -12846,7 +12865,7 @@ Transform:
   m_GameObject: {fileID: 1074764646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.4, y: -0.17, z: 10}
-  m_LocalScale: {x: 3.68, y: 8.59534, z: 0.92}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 2}
   m_Children: []
   m_Father: {fileID: 1085651969}
   m_RootOrder: 2
@@ -12882,10 +12901,27 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300002, guid: 118685e09f24a2d4e8baf847a9f156f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1074764649
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074764646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bb6bda0752e150c4c9f4843d1da634ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1077021481
 GameObject:
   m_ObjectHideFlags: 0
@@ -20155,6 +20191,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696812603}
   - component: {fileID: 1696812604}
+  - component: {fileID: 1696812605}
   m_Layer: 0
   m_Name: Mago
   m_TagString: Untagged
@@ -20170,7 +20207,7 @@ Transform:
   m_GameObject: {fileID: 1696812602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.12, y: 1.38, z: 10}
-  m_LocalScale: {x: 3.566863, y: 8.331086, z: 0.89171576}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 0.89171576}
   m_Children: []
   m_Father: {fileID: 1085651969}
   m_RootOrder: 3
@@ -20206,10 +20243,27 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 118685e09f24a2d4e8baf847a9f156f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!95 &1696812605
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1696812602}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fbbb8966b76c8334485af70edbe28a6b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1696819866
 GameObject:
   m_ObjectHideFlags: 0
