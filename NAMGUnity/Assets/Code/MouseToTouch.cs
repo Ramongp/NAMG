@@ -225,7 +225,7 @@ public class MouseToTouch : MonoBehaviour {
 			else
 			{
 				if(rect.activeSelf.Equals(true)){
-				Debug.Log ("Fuera");
+				//Debug.Log ("Fuera");
 				Borders.Refresh ();
 				pintando = false;
 				}
@@ -386,7 +386,7 @@ public class MouseToTouch : MonoBehaviour {
 		while (pila.Count > 0) {
 			GameObject color = pila.Pop ();
 			if (color.GetComponent<MeshRenderer> ().material.color.Equals (C)) {
-				Debug.Log ("Son iguales");
+				//Debug.Log ("Son iguales");
 				cont++;
 			}
 			save.Push (color);
@@ -401,7 +401,7 @@ public class MouseToTouch : MonoBehaviour {
 
 	void Changeresult()
 	{
-		Debug.Log (Fila.ToString () + " " +Columna.ToString ());
+		//Debug.Log (Fila.ToString () + " " +Columna.ToString ());
 		result.GetComponent<Text> ().text = (Fila * Columna).ToString ();
 	}
 

@@ -7,18 +7,20 @@ using UnityEngine.UI;
 public class Acciones : MonoBehaviour {
 
 	Craft craft;
-	Recipe[] atk,def,curation,spatkCa,spatkAr,spatkMa,spatakMo;
+	Recipe[] atk,def,curation,spatkCa,spatkAr,spatkMa;
 	public Button[] buttons;
+	public string CurrenAction;
+	public Guerrero CurrentGuerrero;
+	public int bonus;
 	// Use this for initialization
 	void Start () {
 		craft=GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
-		atk = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20),new Recipe(12,0,0,0,0,0,new Sprite(),20)};
-		def = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20),new Recipe(0,6,0,0,0,0,new Sprite(),20)};
-		curation = new Recipe[2] {new Recipe(0,0,0,0,8,0,new Sprite(),20),new Recipe(0,0,0,0,15,0,new Sprite(),20)};
-		spatkCa = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20),new Recipe(12,0,0,0,0,0,new Sprite(),20)};
-		spatkAr = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20),new Recipe(12,0,0,4,0,0,new Sprite(),20)};
-		spatkMa = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20),new Recipe(12,0,0,0,0,0,new Sprite(),20)};
-		spatakMo = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20),new Recipe(12,0,0,0,0,0,new Sprite(),20)};
+		atk = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,0,0,0,new Sprite(),20,5)};
+		def = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(0,6,0,0,0,0,new Sprite(),20,5)};
+		curation = new Recipe[2] {new Recipe(0,0,0,0,8,0,new Sprite(),20,5),new Recipe(0,0,0,0,15,0,new Sprite(),20,5)};
+		spatkCa = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,0,0,0,new Sprite(),20,5)};
+		spatkAr = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,4,0,0,new Sprite(),20,5)};
+		spatkMa = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,0,0,0,new Sprite(),20,5)};
 	}
 	
 	// Update is called once per frame
@@ -50,21 +52,50 @@ public class Acciones : MonoBehaviour {
 
 	public void specialattak ()
 	{
+
+		switch (CurrentGuerrero.clase) {
+
+		case "Caballero":
+			int i = Random.Range (0, 1);
+			if(i.Equals(0))
+				craft.ShowRecipe (spatkCa [0],"SpecialAtkDaño");
+			else
+				craft.ShowRecipe (spatkCa [1],"SpecialAtkAumentoDaño");
+			break;
+
+
+		case "Arquero":
+			int e = Random.Range (0, 1);
+			if(e.Equals(0))
+				craft.ShowRecipe (spatkAr [0],"CuracionGrupal");
+			else
+				craft.ShowRecipe (spatkAr [1],"DormirMonstruo");
+			break;
+
+		case "Mago":
+			int u = Random.Range (0, 1);
+			if(u.Equals(0))
+				craft.ShowRecipe (spatkMa [0],"ProteccionGrupal");
+			else
+				craft.ShowRecipe (spatkMa [1],"ReducciónTurnoGrupal");
+			break;
+		}
 		//envir el gerrero del turno
 		//craft.ShowRecipe (specialattak [Random.Range (0, specialattak.spatkAr)]);
 		//MouseToTouch.crafteando = true;
 		//Hide ();
 	}
 
-	void Hide ()
+	public void Hide ()
 	{
 		foreach (Button b in buttons) {
 			b.gameObject.SetActive (false);
+			b.interactable = true;
 		}
 
 	}
 
-	void Show ()
+	public void Show ()
 	{
 		foreach (Button b in buttons) {
 			b.gameObject.SetActive (true);
@@ -72,10 +103,22 @@ public class Acciones : MonoBehaviour {
 
 	}
 
-	public void ObjetoHecho(bool bonus,string action)
+	public void ObjetoHecho(bool bonus,string action, int b)
 	{
+		//Aquí realizo la acción si es un ataque
+
+		if (bonus)
+			this.bonus = b;
+		else
+			this.bonus = 0;
+		CurrenAction = action;
+
 		craft.Refresh ();
 		MouseToTouch.crafteando = false;
-		Show ();
+		BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.EFECTO;
+		//Provisional llamar a efecto()
+		//BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.ESPERANDO;
+
+	
 	}
 }
