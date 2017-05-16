@@ -52,7 +52,15 @@ public class Acciones : MonoBehaviour {
 
 	public void specialattak ()
 	{
-
+		if (CurrentGuerrero.carga < 3) {
+			CurrentGuerrero.Cargar ();
+			BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.CARGA;
+			Hide ();
+		}
+		else{
+			MouseToTouch.crafteando = true;
+			CurrentGuerrero.carga = 0;
+			CurrentGuerrero.descansando = true;
 		switch (CurrentGuerrero.clase) {
 
 		case "Caballero":
@@ -84,6 +92,7 @@ public class Acciones : MonoBehaviour {
 		//craft.ShowRecipe (specialattak [Random.Range (0, specialattak.spatkAr)]);
 		//MouseToTouch.crafteando = true;
 		//Hide ();
+		}
 	}
 
 	public void Hide ()

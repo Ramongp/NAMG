@@ -10,7 +10,7 @@ public class Guerrero{
 	public Text text;
 	public Vector3 position;
 	public Slider SSsalud,Sturno;
-	public bool defendiendo,defensagrupal;
+	public bool defendiendo,defensagrupal,descansando;
 	public string clase;
 
 	public Guerrero(int salud,int curacion,int atk, int defensa,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,int aumentoDef,string clase,Text text)
@@ -136,8 +136,9 @@ public class Guerrero{
 
 
 
-	public void AumentoAtaque()
+	public void AumentoAtaque(int n)
 	{
+		aumentoAtk =n;
 		atk += aumentoAtk;
 		text.color = new Color (0.58f, 0.18f, 0.35f); //Color Burdeos
 		text.text="+" + aumentoAtk.ToString();
