@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: ImageCaballero
+  m_Controller: {fileID: 9100000, guid: 4180f76f05d79a84dab71e9321bb9eb4, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dd5cec611acfe114a8f55b378bdf60d9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: af34bb9ab690f2f41951107cf1235709, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 000e11f99b58ed149810cc480a99e49b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 000e11f99b58ed149810cc480a99e49b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 6089e2d19cc061040891df47a8e55c93, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 08923be50200abe4f81a9f7cb4a5962f, type: 2}

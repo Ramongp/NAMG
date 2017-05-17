@@ -12,9 +12,11 @@ public class Guerrero{
 	public Slider SSsalud,Sturno;
 	public bool defendiendo,defensagrupal,descansando;
 	public string clase;
+	public Image artifact;
 
-	public Guerrero(int salud,int curacion,int atk, int defensa,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,int aumentoDef,string clase,Text text)
+	public Guerrero(int salud,int curacion,int atk, int defensa,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,int aumentoDef,string clase,Text text, Image artifact)
 	{
+		this.artifact = artifact;
 		this.clase = clase;
 		saludMax = salud;
 		this.text = text;
@@ -39,7 +41,7 @@ public class Guerrero{
 	{
 		 int danoReal = defensa - dano;
 		if (danoReal < 0) {
-			salud += dano;
+			salud -= dano;
 			text.color = Color.red;
 			text.text = "-" + dano.ToString ();
 			SSsalud.value = salud;
@@ -51,6 +53,7 @@ public class Guerrero{
 		}
 		else {
 			text.color = Color.blue;
+			text.fontSize = 9;
 			text.text = "IMPENETRABLE";
 			ShowText ();
 		}
@@ -131,6 +134,7 @@ public class Guerrero{
 	public void HideText()
 	{
 		text.color = new Color(0,0,0,0);
+		text.fontSize = 20;
 	}
 
 

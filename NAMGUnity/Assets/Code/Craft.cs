@@ -102,7 +102,7 @@ public class Craft : MonoBehaviour {
 					startcrafting = false;
 					Debug.Log ("Objeto Acabado");
 					reset.GetComponent<Image> ().color = Color.white;
-					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus);
+					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
 					tiempo.value = 1;
 				} 
 				else {
@@ -142,7 +142,7 @@ public class Craft : MonoBehaviour {
 					startcrafting = false;
 					Debug.Log ("Objeto Acabado");
 					reset.GetComponent<Image> ().color = Color.white;
-					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus);
+					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
 					tiempo.value = 1;
 				}
 			
@@ -176,7 +176,7 @@ public class Craft : MonoBehaviour {
 				startcrafting = false;
 				Debug.Log("Objeto Acabado");
 				reset.GetComponent<Image> ().color = Color.white;
-				acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus);
+				acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
 				tiempo.value = 1;
 			}
 

@@ -12,20 +12,33 @@ public class Acciones : MonoBehaviour {
 	public string CurrenAction;
 	public Guerrero CurrentGuerrero;
 	public int bonus;
+	public Sprite[] PixelObjects;
+	public static Image CurrentObject;
+	bool desaparecer;
+	float YImage;
 	// Use this for initialization
 	void Start () {
+		CurrentObject = GameObject.Find ("CurrentObject").GetComponent<Image>();
+		YImage = CurrentObject.transform.position.y;
+		CurrentObject.color = new Color (0, 0, 0, 0);
 		craft=GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
-		atk = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,0,0,0,new Sprite(),20,5)};
-		def = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(0,6,0,0,0,0,new Sprite(),20,5)};
-		curation = new Recipe[2] {new Recipe(0,0,0,0,8,0,new Sprite(),20,5),new Recipe(0,0,0,0,15,0,new Sprite(),20,5)};
-		spatkCa = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,0,0,0,new Sprite(),20,5)};
-		spatkAr = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,4,0,0,new Sprite(),20,5)};
-		spatkMa = new Recipe[2] {new Recipe(2,0,2,0,0,6,new Sprite(),20,5),new Recipe(12,0,0,0,0,0,new Sprite(),20,5)};
+		atk = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5)};
+		def = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(0,6,0,0,0,0,PixelObjects[0],20,5)};
+		curation = new Recipe[2] {new Recipe(0,0,0,0,8,0,PixelObjects[0],20,5),new Recipe(0,0,0,0,15,0,PixelObjects[0],20,5)};
+		spatkCa = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5)};
+		spatkAr = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,4,0,0,PixelObjects[0],20,5)};
+		spatkMa = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[0],20,5)};
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if ((CurrentObject.color.a!= 0) || (desaparecer)) {
+			CurrentObject.transform.Translate (Vector2.up * Time.deltaTime*100);
+			if(desaparecer){
+				float alpha = CurrentObject.color.a;
+				CurrentObject.color = new Color (1, 1, 1, alpha - Time.deltaTime*10);
+						}
+		}
 	}
 
 
@@ -104,6 +117,20 @@ public class Acciones : MonoBehaviour {
 
 	}
 
+
+	public void ShowPixelArt()
+	{
+		desaparecer = false;
+		CurrentObject.transform.position = new Vector3 (CurrentObject.transform.position.x, YImage - CurrentObject.transform.localScale.y, CurrentObject.transform.position.z);
+		CurrentObject.color = new Color (1, 1, 1, 1);
+	}
+	IEnumerator HidePixelArt ()
+	{
+		yield return new WaitForSeconds (1);
+		desaparecer = true;
+
+	}
+
 	public void Show ()
 	{
 		foreach (Button b in buttons) {
@@ -112,10 +139,11 @@ public class Acciones : MonoBehaviour {
 
 	}
 
-	public void ObjetoHecho(bool bonus,string action, int b)
+	public void ObjetoHecho(bool bonus,string action, int b,Sprite PixelArt)
 	{
 		//Aquí realizo la acción si es un ataque
-
+		CurrentObject.sprite=PixelArt;
+		ShowPixelArt ();
 		if (bonus)
 			this.bonus = b;
 		else
@@ -127,6 +155,7 @@ public class Acciones : MonoBehaviour {
 		BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.EFECTO;
 		//Provisional llamar a efecto()
 		//BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.ESPERANDO;
+		StartCoroutine(HidePixelArt());
 
 	
 	}

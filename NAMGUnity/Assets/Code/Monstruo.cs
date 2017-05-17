@@ -45,10 +45,10 @@ public class Monstruo{
 		int i = Random.Range (1, 2);
 
 		if (i.Equals (1)) {
-			Guerrero objetivo = guerreros [0];
+			Guerrero objetivo = guerreros [Random.Range (0, 3)];
 			foreach(Guerrero gu in guerreros) //Enemigos que mata con el ataque
 			{
-				if (gu.salud < objetivo.salud) {
+				if (gu.salud/gu.saludMax < objetivo.salud/objetivo.saludMax) {
 					objetivo=gu;
 				}
 			}
