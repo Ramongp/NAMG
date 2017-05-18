@@ -16,11 +16,16 @@ public class Acciones : MonoBehaviour {
 	public static Image CurrentObject;
 	bool desaparecer;
 	float YImage;
+	float XAction;
+	Text textbonus;
 	// Use this for initialization
 	void Start () {
+		textbonus = GameObject.Find ("CurrentObject").GetComponentInChildren<Text> ();
 		CurrentObject = GameObject.Find ("CurrentObject").GetComponent<Image>();
 		YImage = CurrentObject.transform.position.y;
+		textbonus.color = new Color (textbonus.color.r, textbonus.color.g, textbonus.color.b, 0);
 		CurrentObject.color = new Color (0, 0, 0, 0);
+		XAction = buttons [0].transform.position.x;
 		craft=GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
 		atk = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5)};
 		def = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(0,6,0,0,0,0,PixelObjects[0],20,5)};
@@ -32,12 +37,27 @@ public class Acciones : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((CurrentObject.color.a!= 0) || (desaparecer)) {
-			CurrentObject.transform.Translate (Vector2.up * Time.deltaTime*100);
-			if(desaparecer){
+		if ((CurrentObject.color.a != 0) || (desaparecer)) {
+			CurrentObject.transform.Translate (Vector2.up * Time.deltaTime * 100);
+			if (desaparecer) {
 				float alpha = CurrentObject.color.a;
-				CurrentObject.color = new Color (1, 1, 1, alpha - Time.deltaTime*10);
-						}
+				CurrentObject.color = new Color (1, 1, 1, alpha - Time.deltaTime * 10);
+				textbonus.color = new Color (textbonus.color.r, textbonus.color.g, textbonus.color.b, alpha - Time.deltaTime * 10);
+			}
+			if (CurrentObject.color.a < 0) {
+				desaparecer = false;
+				CurrentObject.color = new Color (0, 0, 0, 0);
+			}
+		
+		}
+		if (buttons[0].gameObject.activeSelf.Equals(true)) {
+			foreach (Button b in buttons) {
+				if (b.transform.position.x < XAction) {
+					b.gameObject.transform.Translate (Vector3.right * Time.deltaTime * 1000);
+				} else {
+					b.gameObject.transform.position = new Vector3 (XAction, b.gameObject.transform.position.y, b.gameObject.transform.position.z);
+				}
+			}
 		}
 	}
 
@@ -133,10 +153,11 @@ public class Acciones : MonoBehaviour {
 
 	public void Show ()
 	{
-		foreach (Button b in buttons) {
-			b.gameObject.SetActive (true);
+		for (int i = 0; i < buttons.Length; i++) {
+			buttons [i].gameObject.SetActive (true);
+			buttons [i].transform.position = new Vector3 (buttons [i].transform.position.x - buttons [i].GetComponent<RectTransform>().rect.width-buttons [i].GetComponent<RectTransform>().rect.width*((float)(i+1)/4), buttons [i].transform.position.y, buttons [i].transform.position.z);
 		}
-
+		Debug.Log (buttons [0].gameObject.activeSelf.ToString ());
 	}
 
 	public void ObjetoHecho(bool bonus,string action, int b,Sprite PixelArt)
@@ -144,10 +165,15 @@ public class Acciones : MonoBehaviour {
 		//Aquí realizo la acción si es un ataque
 		CurrentObject.sprite=PixelArt;
 		ShowPixelArt ();
-		if (bonus)
+		if (bonus) {
 			this.bonus = b;
-		else
+			textbonus.text = "BONUS";
+			textbonus.color = new Color (textbonus.color.r, textbonus.color.g, textbonus.color.b, 1);
+		} 
+		else {
 			this.bonus = 0;
+			textbonus.text = " ";
+		}
 		CurrenAction = action;
 
 		craft.Refresh ();

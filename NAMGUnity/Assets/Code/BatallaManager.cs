@@ -130,6 +130,7 @@ public class BatallaManager : MonoBehaviour {
 
 	void Escogiendo(Guerrero gu)
 	{
+		gu.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", true);
 		action.CurrentGuerrero = gu;
 		CurrenState = EstadosDeBatalla.ESCOGIENDO;
 		action.Show ();
@@ -166,6 +167,7 @@ public class BatallaManager : MonoBehaviour {
 
 	public void Efecto(int bonus,string action,Guerrero g)
 	{		
+		g.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", false);
 		g.Sturno.value = 1;
 		Debug.Log (" La accion es "+action);
 		switch (action) {

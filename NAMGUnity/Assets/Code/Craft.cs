@@ -94,6 +94,8 @@ public class Craft : MonoBehaviour {
 		case 0:
 			if (num.Equals (CurrentRecipe.roj+CurrentRecipe.nar+CurrentRecipe.lila)) {
 
+				//poner result a verde
+				MouseToTouch.correcto=true;
 				if (CurrentRecipe.roj != 0) {
 					Nums [colcont].GetComponent<Text> ().color = Color.green;
 				}
@@ -125,6 +127,8 @@ public class Craft : MonoBehaviour {
 		case 1:
 			int i = GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().Corroborar(colors [3]);
 			if ((i.Equals(CurrentRecipe.nar))&&((num-i).Equals(CurrentRecipe.ama+CurrentRecipe.ver))) {
+				//poner result a verde
+				MouseToTouch.correcto=true;
 
 				if (CurrentRecipe.ama != 0) {
 					Nums [colcont].GetComponent<Text> ().color = Color.green;
@@ -161,6 +165,9 @@ public class Craft : MonoBehaviour {
 			int lila = GameObject.Find ("Main Camera").GetComponent<MouseToTouch> ().Corroborar (colors [5]);
 			//Debug.Log ("Caso azul: " + verde.ToString () + " " + lila.ToString () + " " + num.ToString () + " DEberia dar " + CurrentRecipe.azu.ToString ());
 			if ((verde.Equals (CurrentRecipe.ver)) && (lila.Equals (CurrentRecipe.lila)) && ((num- (verde + lila)).Equals (CurrentRecipe.azu))) {
+
+				//poner result a verde
+				MouseToTouch.correcto=true;
 
 				if (CurrentRecipe.azu != 0) {
 					Tazu.GetComponent<Text> ().color = Color.green;

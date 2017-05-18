@@ -12,7 +12,7 @@ public class MouseToTouch : MonoBehaviour {
 	public GameObject rect, result;
 	public GameObject CasillaSize;
 	RowsNColumns Borders;
-	public static bool pintando, crafteando;
+	public static bool pintando, crafteando,correcto;
 	Stack <GameObject> CasillasYaPint;
 	Stack <Color> CasillasYaCol;
 	Color Roj,Ama,Azu,Nar,Verd,Lila;
@@ -209,6 +209,7 @@ public class MouseToTouch : MonoBehaviour {
 						Columna = Borders.Ccont;
 						result.transform.position= new Vector3(touchPosition.x,touchPosition.y,0);
 						result.GetComponent<Text> ().text = Fila.ToString () + " X " + Columna.ToString ();
+						result.GetComponent<Text> ().color = Color.white;
 						Invoke ("Changeresult", 1);
 						Invoke ("Stopresult", 2);
 
@@ -216,6 +217,10 @@ public class MouseToTouch : MonoBehaviour {
 						Craft g = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
 						g.CorrectRect (Borders.Fcont * Borders.Ccont);
 
+						if (correcto) {
+							result.GetComponent<Text> ().color = Color.green;
+							correcto = false;
+						}
 
 						Borders.Refresh ();
 					}
