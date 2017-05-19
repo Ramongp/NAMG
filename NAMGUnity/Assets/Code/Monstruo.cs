@@ -13,9 +13,13 @@ public class Monstruo{
 	bool defendiendo,defensagrupal;
 	Guerrero[] guerreros;
 	public int aumentoatk=12,ralentizar;
+	public Animator heride;
+	public ParticleSystem cargar;
 
-	public Monstruo(int salud,int atk,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,Text text,Guerrero G1,Guerrero G2, Guerrero G3)
+	public Monstruo(int salud,int atk,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,Animator heride,ParticleSystem cargar,Text text,Guerrero G1,Guerrero G2, Guerrero G3)
 	{
+		this.cargar = cargar;
+		this.heride = heride;
 		guerreros = new Guerrero[] { G1, G2, G3 };
 		this.text = text;
 		this.position = position;
@@ -97,6 +101,7 @@ public class Monstruo{
 
 	void Cargar(){
 		if (carga < 3) {
+			cargar.gameObject.SetActive (true);
 			carga++;
 			text.color = new Color (1, 0.5f, 0, 0.5f); // Color Naranja
 			text.text = carga.ToString ();

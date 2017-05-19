@@ -86,11 +86,12 @@ public class Acciones : MonoBehaviour {
 	public void specialattak ()
 	{
 		if (CurrentGuerrero.carga < 3) {
+			Hide ();
 			CurrentGuerrero.Cargar ();
 			BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.CARGA;
-			Hide ();
 		}
 		else{
+			Hide ();
 			MouseToTouch.crafteando = true;
 			CurrentGuerrero.carga = 0;
 			CurrentGuerrero.descansando = true;
@@ -140,13 +141,20 @@ public class Acciones : MonoBehaviour {
 
 	public void ShowPixelArt()
 	{
+		StartCoroutine (ShowPixelArtAfterSecond());
+	}
+
+	IEnumerator ShowPixelArtAfterSecond()
+	{
+		yield return new WaitForSeconds (1);
+		textbonus.color = new Color (textbonus.color.r, textbonus.color.g, textbonus.color.b, 1);
 		desaparecer = false;
 		CurrentObject.transform.position = new Vector3 (CurrentObject.transform.position.x, YImage - CurrentObject.transform.localScale.y, CurrentObject.transform.position.z);
 		CurrentObject.color = new Color (1, 1, 1, 1);
 	}
 	IEnumerator HidePixelArt ()
 	{
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (2);
 		desaparecer = true;
 
 	}
@@ -168,7 +176,6 @@ public class Acciones : MonoBehaviour {
 		if (bonus) {
 			this.bonus = b;
 			textbonus.text = "BONUS";
-			textbonus.color = new Color (textbonus.color.r, textbonus.color.g, textbonus.color.b, 1);
 		} 
 		else {
 			this.bonus = 0;

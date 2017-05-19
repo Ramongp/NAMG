@@ -19,6 +19,7 @@ public class Craft : MonoBehaviour {
 	GameObject reset;
 	string action;
 	Acciones acciones;
+	public ParticleSystem[] Componentes;
 	void Start () {
 		tiempo.interactable = false;
 		tiempo.value = 1;
@@ -58,7 +59,6 @@ public class Craft : MonoBehaviour {
 		Tlila.GetComponent<Text>().text = r.lila.ToString();
 
 		MouseToTouch.pintando = false;
-
 
 		colcont = 0;
 		if ((r.roj.Equals (0)) && (r.nar.Equals (0)) && (r.lila.Equals (0))) {
@@ -103,6 +103,7 @@ public class Craft : MonoBehaviour {
 					//Objeto Acabado
 					startcrafting = false;
 					Debug.Log ("Objeto Acabado");
+					MostrarCasillas ();
 					reset.GetComponent<Image> ().color = Color.white;
 					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
 					tiempo.value = 1;
@@ -145,6 +146,7 @@ public class Craft : MonoBehaviour {
 					//Objeto acabado
 					startcrafting = false;
 					Debug.Log ("Objeto Acabado");
+					MostrarCasillas ();
 					reset.GetComponent<Image> ().color = Color.white;
 					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
 					tiempo.value = 1;
@@ -182,6 +184,7 @@ public class Craft : MonoBehaviour {
 
 				startcrafting = false;
 				Debug.Log("Objeto Acabado");
+				MostrarCasillas ();
 				reset.GetComponent<Image> ().color = Color.white;
 				acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
 				tiempo.value = 1;
@@ -192,5 +195,17 @@ public class Craft : MonoBehaviour {
 					}
 
 			}
+
+
+	void MostrarCasillas()
+	{
+		Componentes [0].Emit (CurrentRecipe.roj);
+		Componentes [1].Emit (CurrentRecipe.ama);
+		Componentes [2].Emit (CurrentRecipe.azu);
+		Componentes [3].Emit (CurrentRecipe.nar);
+		Componentes [4].Emit (CurrentRecipe.ver);
+		Componentes [5].Emit (CurrentRecipe.lila);
+
+	}
 }
 

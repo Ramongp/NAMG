@@ -13,9 +13,16 @@ public class Guerrero{
 	public bool defendiendo,defensagrupal,descansando;
 	public string clase;
 	public Image artifact;
+	public Animator heride;
+	public ParticleSystem curar, defender, augmAtaque, cargar;
 
-	public Guerrero(int salud,int curacion,int atk, int defensa,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,int aumentoDef,string clase,Text text, Image artifact)
+	public Guerrero(int salud,int curacion,int atk, int defensa,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,int aumentoDef,string clase,Text text, Image artifact,ParticleSystem curar,ParticleSystem defender,ParticleSystem augmAtaque,ParticleSystem cargar, Animator heride)
 	{
+		this.cargar = cargar;
+		this.augmAtaque = augmAtaque;
+		this.defender = defender;
+		this.curar=curar;
+		this.heride = heride;
 		this.artifact = artifact;
 		this.clase = clase;
 		saludMax = salud;
@@ -41,6 +48,7 @@ public class Guerrero{
 	{
 		 int danoReal = defensa - dano;
 		if (danoReal < 0) {
+			heride.SetTrigger ("Heride");
 			salud -= dano;
 			text.color = Color.red;
 			text.text = "-" + dano.ToString ();
@@ -82,6 +90,8 @@ public class Guerrero{
 
 	public void Curar(int n)
 	{
+		//mostrar curacion
+		curar.gameObject.SetActive(true);
 		int currentCuracion = curacion + n;
 		if (salud + currentCuracion > saludMax) 
 		{
@@ -97,6 +107,7 @@ public class Guerrero{
 
 	public void Curar(int b,int n)
 	{
+		curar.gameObject.SetActive(true);
 		int currentCuracion = b + n;
 		if (salud + currentCuracion > saludMax) 
 		{
@@ -112,6 +123,7 @@ public class Guerrero{
 
 	public void Cargar()
 	{
+		cargar.gameObject.SetActive (true);
 		carga++;
 		text.color = new Color (1, 0.5f, 0, 0.5f); // Color Naranja
 		text.text = carga.ToString ();
@@ -142,6 +154,7 @@ public class Guerrero{
 
 	public void AumentoAtaque(int n)
 	{
+		augmAtaque.gameObject.SetActive (true);
 		aumentoAtk =n;
 		atk += aumentoAtk;
 		text.color = new Color (0.58f, 0.18f, 0.35f); //Color Burdeos

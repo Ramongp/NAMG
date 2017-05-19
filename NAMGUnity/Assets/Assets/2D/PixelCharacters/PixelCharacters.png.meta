@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 118685e09f24a2d4e8baf847a9f156f0
-timeCreated: 1494754294
+timeCreated: 1495209483
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,12 @@ TextureImporter:
     21300006: M2
     21300008: A2
     21300010: C2
+    21300012: M1_0
+    21300014: M1_1
+    21300016: M2_0
+    21300018: M2_1
+    21300020: M3_0
+    21300022: M3_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,10 +93,10 @@ TextureImporter:
       name: M1
       rect:
         serializedVersion: 2
-        x: 6
-        y: 245
-        width: 96
-        height: 101
+        x: 0
+        y: 1593
+        width: 107
+        height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,10 +106,10 @@ TextureImporter:
       name: A1
       rect:
         serializedVersion: 2
-        x: 22
-        y: 130
-        width: 75
-        height: 100
+        x: 17
+        y: 1470
+        width: 80
+        height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,10 +119,10 @@ TextureImporter:
       name: C1
       rect:
         serializedVersion: 2
-        x: 12
-        y: 15
-        width: 90
-        height: 110
+        x: 6
+        y: 1346
+        width: 97
+        height: 118
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,10 +132,10 @@ TextureImporter:
       name: M2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 245
-        width: 100
-        height: 101
+        x: 109
+        y: 1593
+        width: 107
+        height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,10 +145,10 @@ TextureImporter:
       name: A2
       rect:
         serializedVersion: 2
-        x: 117
-        y: 130
-        width: 75
-        height: 100
+        x: 119
+        y: 1470
+        width: 80
+        height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +158,88 @@ TextureImporter:
       name: C2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 15
-        width: 90
-        height: 110
+        x: 109
+        y: 1346
+        width: 97
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M1_0
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 1344
+        width: 338
+        height: 356
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M1_1
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 1344
+        width: 338
+        height: 356
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M2_0
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 739
+        width: 444
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M2_1
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 738
+        width: 444
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M3_0
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 164
+        width: 432
+        height: 497
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M3_1
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 163
+        width: 432
+        height: 497
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

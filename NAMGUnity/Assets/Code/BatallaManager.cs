@@ -20,7 +20,7 @@ public class BatallaManager : MonoBehaviour {
 	// Use this for initialization
 
 	public static EstadosDeBatalla CurrenState;
-	int Level;
+	public static int Level;
 	Guerrero[] guerreros;
 	public Slider[] salud,turnos;
 	Monstruo M;
@@ -30,8 +30,13 @@ public class BatallaManager : MonoBehaviour {
 	Acciones action;
 	public Text[] textos;
 	public Image[] artifacts;
-	void Start () {
+	public ParticleSystem[] particulas;
+	public Animator[] heridas;
+	public Animator Monstruo;
 
+	void Start () {
+		//La escen anterior le cambiará el valor a level provisional
+		Level=1;
 		foreach (Slider S in turnos) {
 			S.value = 1;
 			S.interactable = false;
@@ -43,19 +48,33 @@ public class BatallaManager : MonoBehaviour {
 		action = GameObject.Find ("Actions").GetComponent<Acciones> ();
 		action.Hide ();//Esconder los botones
 		guerreros = new Guerrero[] {
-			new Guerrero (100, 20, 20, 20, 20, anim [0], salud [0], turnos [0], posicion [0].position, 10, "Caballero", textos [0], artifacts [0]),
+			new Guerrero (100, 20, 20, 20, 20, anim [0], salud [0], turnos [0], posicion [0].position, 10, "Caballero", textos [0], artifacts [0],particulas[0],particulas[1],particulas[2],particulas[3],heridas[0]),
 			//Provisional: Arquero Original 10 seg, por ahora 2 tiempoturno Mago 15
-			new Guerrero (80, 20, 20, 20, 2, anim [1], salud [1], turnos [1], posicion [1].position, 10, "Arquero", textos [1], artifacts [1]),
-			new Guerrero (90, 20, 20, 20, 5, anim [2], salud [2], turnos [2], posicion [2].position, 10, "Mago", textos [2], artifacts [2])
+			new Guerrero (80, 20, 20, 20, 2, anim [1], salud [1], turnos [1], posicion [1].position, 10, "Arquero", textos [1], artifacts [1],particulas[4],particulas[5],particulas[6],particulas[7],heridas[1]),
+			new Guerrero (90, 20, 20, 20, 5, anim [2], salud [2], turnos [2], posicion [2].position, 10, "Mago", textos [2], artifacts [2],particulas[8],particulas[9],particulas[10],particulas[11],heridas[2])
 		};
 		//Le pasa el nivel segun el nivel, el monstruo Original 100 provisional 3
-		M= new Monstruo (225,40,3,new Animator(),salud[3],turnos[3],posicion[3].position,textos[3],guerreros[0],guerreros[1],guerreros[2]);
+		M= new Monstruo (225,40,3,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2]);
 		CurrenState = EstadosDeBatalla.ESPERANDO;
 
 
 		M.HideText ();
 		foreach (Guerrero gu in guerreros) {
 			gu.HideText ();
+		}
+
+		switch (Level) {
+		case 1:
+			Monstruo.SetBool ("Level1", true);
+			break;
+		case 2:
+			Monstruo.SetBool ("Level1", false);
+			Monstruo.SetBool ("Level2", true);
+			break;
+		case 3:
+			Monstruo.SetBool ("Level2", false);
+			Monstruo.SetBool ("Level3", true);
+			break;
 		}
 	}
 	
@@ -118,6 +137,7 @@ public class BatallaManager : MonoBehaviour {
 			break;
 
 		case(EstadosDeBatalla.CARGA):
+			action.CurrentGuerrero.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", false);
 			action.CurrentGuerrero.Sturno.value = 1;
 			StartCoroutine(StopTexto(action.CurrentGuerrero));
 			if (action.CurrentGuerrero.descansando)
@@ -131,6 +151,7 @@ public class BatallaManager : MonoBehaviour {
 	void Escogiendo(Guerrero gu)
 	{
 		gu.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", true);
+		gu.artifact.overrideSprite = null;
 		action.CurrentGuerrero = gu;
 		CurrenState = EstadosDeBatalla.ESCOGIENDO;
 		action.Show ();
@@ -164,7 +185,7 @@ public class BatallaManager : MonoBehaviour {
 				action.buttons [3].GetComponentInChildren<Text> ().text = "Ataque Especial";
 		}
 	}
-
+		
 	public void Efecto(int bonus,string action,Guerrero g)
 	{		
 		g.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", false);
@@ -187,8 +208,8 @@ public class BatallaManager : MonoBehaviour {
 
 		case "def":
 			//Mostrar Objeto
-			StartCoroutine(ShowArtifact(g));
-				
+			StartCoroutine (ShowArtifact (g));
+			g.defender.gameObject.SetActive (true);
 			StartCoroutine (StopTexto (g));
 			g.Defender (bonus);
 			StartCoroutine (StopDefensa(g));
@@ -280,7 +301,7 @@ public class BatallaManager : MonoBehaviour {
 		yield return new WaitForSeconds (0.5f);
 		//Mostrar Objeto
 		Debug.Log ("Mostarar Objeto");
-		g.artifact.sprite = Acciones.CurrentObject.sprite;
+		g.artifact.overrideSprite = Acciones.CurrentObject.sprite;
 		g.artifact.GetComponent<Animator> ().SetTrigger("Show");
 	}
 
@@ -288,14 +309,16 @@ public class BatallaManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (1);
 		//Mostrar Objeto
-		g.artifact.sprite = Acciones.CurrentObject.sprite;
+		g.artifact.overrideSprite = Acciones.CurrentObject.sprite;
 		g.artifact.GetComponent<Animator> ().SetTrigger("Attack");
+		M.heride.SetTrigger ("Heride");
 	}
 
 	IEnumerator StopDefensa(Guerrero g)
 				{
 		yield return new WaitForSeconds (200);
 					if (!g.defensagrupal) {
+			g.defender.gameObject.SetActive (false);
 						g.defendiendo = false;
 			g.defensa -= g.aumentoDefBonus;
 						g.aumentoDefBonus = 0;
@@ -307,6 +330,7 @@ public class BatallaManager : MonoBehaviour {
 	IEnumerator StopAtaque(Guerrero g)
 		{
 		yield return new WaitForSeconds (100);
+		g.augmAtaque.gameObject.SetActive (false);
 		g.atk -= g.aumentoAtk;
 		}
 
@@ -314,6 +338,7 @@ public class BatallaManager : MonoBehaviour {
 	IEnumerator StopDefensaGrupal(Guerrero g)
 				{
 		yield return new WaitForSeconds (250);
+		g.defender.gameObject.SetActive (false);
 					g.defensagrupal = false;
 					g.defendiendo = false;
 					g.defensa -= g.aumentoDefBonus;
@@ -336,11 +361,14 @@ public class BatallaManager : MonoBehaviour {
 	{ 
 		yield return new WaitForSeconds (1);
 		g.HideText ();
+		g.curar.gameObject.SetActive(false);
+		g.cargar.gameObject.SetActive(false);
 	}
 
 	IEnumerator StopTextoMonstruo()
 	{ 
 		yield return new WaitForSeconds (1);
 		M.HideText ();
+		M.cargar.gameObject.SetActive (false);
 	}
 }
