@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 
 public class Acciones : MonoBehaviour {
-
+	public static bool tutorial;
 	Craft craft;
+	CraftTutorial craftTutorial;
 	Recipe[] atk,def,curation,spatkCa,spatkAr,spatkMa;
 	public Button[] buttons;
 	public string CurrenAction;
@@ -26,10 +27,15 @@ public class Acciones : MonoBehaviour {
 		textbonus.color = new Color (textbonus.color.r, textbonus.color.g, textbonus.color.b, 0);
 		CurrentObject.color = new Color (0, 0, 0, 0);
 		XAction = buttons [0].transform.position.x;
-		craft=GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
+		if (tutorial) {
+			craftTutorial = GameObject.Find ("CreadorRecetas").GetComponent<CraftTutorial> ();
+		}
+		else{
+			craft = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
+		}
 		atk = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5)};
 		def = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(0,6,0,0,0,0,PixelObjects[0],20,5)};
-		curation = new Recipe[2] {new Recipe(0,0,0,0,8,0,PixelObjects[0],20,5),new Recipe(0,0,0,0,15,0,PixelObjects[0],20,5)};
+		curation = new Recipe[2] {new Recipe(30,4,0,0,4,0,PixelObjects[2],20,20),new Recipe(0,0,0,0,15,0,PixelObjects[0],20,5)};
 		spatkCa = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5)};
 		spatkAr = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,4,0,0,PixelObjects[0],20,5)};
 		spatkMa = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[0],20,5)};
@@ -78,9 +84,17 @@ public class Acciones : MonoBehaviour {
 
 	public void heal()
 	{
-		craft.ShowRecipe (curation [Random.Range (0, curation.Length)],"curation");
-		MouseToTouch.crafteando = true;
-		Hide ();
+		if (tutorial) {
+			craftTutorial.ShowRecipe (curation [0], "curation");
+			Fungus.Flowchart.BroadcastFungusMessage ("Bloque5");
+			Hide ();
+			TutorialManager.CurrenState = TutorialManager.EstadosDeBatalla.BLOQUE5;
+		} 
+		else {
+			craft.ShowRecipe (curation [Random.Range (0, curation.Length)], "curation");
+			MouseToTouch.crafteando = true;
+			Hide ();
+		}
 	}
 
 	public void specialattak ()
@@ -89,6 +103,7 @@ public class Acciones : MonoBehaviour {
 			Hide ();
 			CurrentGuerrero.Cargar ();
 			BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.CARGA;
+			TutorialManager.CurrenState = TutorialManager.EstadosDeBatalla.CARGA;
 		}
 		else{
 			Hide ();
@@ -182,10 +197,16 @@ public class Acciones : MonoBehaviour {
 			textbonus.text = " ";
 		}
 		CurrenAction = action;
+		if (tutorial) {
+			craftTutorial.Refresh ();
+			MouseToTouchTutorial.crafteando = false;
+			TutorialManager.CurrenState = TutorialManager.EstadosDeBatalla.EFECTO;
+		} else {
+			craft.Refresh ();
+			MouseToTouch.crafteando = false;
+			BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.EFECTO;
+		}
 
-		craft.Refresh ();
-		MouseToTouch.crafteando = false;
-		BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.EFECTO;
 		//Provisional llamar a efecto()
 		//BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.ESPERANDO;
 		StartCoroutine(HidePixelArt());
