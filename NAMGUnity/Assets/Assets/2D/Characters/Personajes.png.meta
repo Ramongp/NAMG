@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a95bcf0cf906fea48abeb37f9e581785
-timeCreated: 1495357716
+timeCreated: 1495736535
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,11 +8,14 @@ TextureImporter:
     21300002: CN
     21300004: CE
     21300006: MS
-    21300008: NG
-    21300010: Personajes_5
-    21300012: PH
-    21300014: PSc
-    21300016: NN
+    21300008: NN
+    21300010: NG
+    21300012: PN
+    21300014: PS
+    21300016: M1
+    21300018: M2
+    21300020: M3
+    21300022: King
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -90,10 +93,10 @@ TextureImporter:
       name: A
       rect:
         serializedVersion: 2
-        x: 5
-        y: 516
-        width: 513
-        height: 847
+        x: 7687
+        y: 624
+        width: 296
+        height: 467
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -103,10 +106,10 @@ TextureImporter:
       name: CN
       rect:
         serializedVersion: 2
-        x: 593
-        y: 523
-        width: 523
-        height: 941
+        x: 7336
+        y: 629
+        width: 299
+        height: 535
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,10 +119,10 @@ TextureImporter:
       name: CE
       rect:
         serializedVersion: 2
-        x: 1185
-        y: 510
-        width: 581
-        height: 969
+        x: 6954
+        y: 626
+        width: 335
+        height: 548
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,49 +132,10 @@ TextureImporter:
       name: MS
       rect:
         serializedVersion: 2
-        x: 1968
-        y: 466
-        width: 909
-        height: 1019
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: NG
-      rect:
-        serializedVersion: 2
-        x: 3086
-        y: 507
-        width: 497
-        height: 958
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PH
-      rect:
-        serializedVersion: 2
-        x: 4486
-        y: 582
-        width: 685
-        height: 840
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: PSc
-      rect:
-        serializedVersion: 2
-        x: 5215
-        y: 592
-        width: 713
-        height: 847
+        x: 6364
+        y: 633
+        width: 517
+        height: 559
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +145,101 @@ TextureImporter:
       name: NN
       rect:
         serializedVersion: 2
-        x: 3688
-        y: 507
-        width: 497
-        height: 958
+        x: 6001
+        y: 644
+        width: 261
+        height: 481
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NG
+      rect:
+        serializedVersion: 2
+        x: 5698
+        y: 644
+        width: 261
+        height: 481
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PN
+      rect:
+        serializedVersion: 2
+        x: 5329
+        y: 638
+        width: 326
+        height: 416
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PS
+      rect:
+        serializedVersion: 2
+        x: 4956
+        y: 646
+        width: 326
+        height: 416
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M1
+      rect:
+        serializedVersion: 2
+        x: 4011
+        y: 311
+        width: 765
+        height: 849
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M2
+      rect:
+        serializedVersion: 2
+        x: 2961
+        y: 242
+        width: 929
+        height: 919
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: M3
+      rect:
+        serializedVersion: 2
+        x: 1801
+        y: 192
+        width: 971
+        height: 989
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: King
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 200
+        width: 700
+        height: 804
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

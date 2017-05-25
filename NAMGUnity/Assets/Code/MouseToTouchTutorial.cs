@@ -141,30 +141,32 @@ public class MouseToTouchTutorial : MonoBehaviour {
 							if (hit.collider.tag.Equals ("Quad")) {
 							if ((hit.collider.name.Equals (mat [2, 2].g.name)) || (!TutorialManager.CurrenState.Equals (TutorialManager.EstadosDeBatalla.BLOQUE6))) {
 								if ((hit.collider.name.Equals (mat [8, 6].g.name)) || (!TutorialManager.CurrenState.Equals (TutorialManager.EstadosDeBatalla.BLOQUE7))) {
-									if ((hit.collider.name.Equals (mat [8, 6].g.name)) || (!TutorialManager.CurrenState.Equals (TutorialManager.EstadosDeBatalla.BLOQUE9))) {
-										rect.SetActive (true);
+									if ((hit.collider.name.Equals (mat [8, 6].g.name)) || (!TutorialManager.CurrenState.Equals (TutorialManager.EstadosDeBatalla.BLOQUE8))) {
+										if ((hit.collider.name.Equals (mat [8, 6].g.name)) || (!TutorialManager.CurrenState.Equals (TutorialManager.EstadosDeBatalla.BLOQUE9))) {
+											rect.SetActive (true);
 
-										//ya estamos pintando
-										pintando = true;
-										//buscar start
-										bool found = false;
-										int f = 0, c = 0;
-										while (!found) {
-											if (hit.collider.name.Equals (mat [f, c].g.name)) {
-												start = mat [f, c];
-												found = true;
-											} else {
-												c += 1;
-												if (c == numFilas + 1) {
-													c = 0;
-													f += 1;
+											//ya estamos pintando
+											pintando = true;
+											//buscar start
+											bool found = false;
+											int f = 0, c = 0;
+											while (!found) {
+												if (hit.collider.name.Equals (mat [f, c].g.name)) {
+													start = mat [f, c];
+													found = true;
+												} else {
+													c += 1;
+													if (c == numFilas + 1) {
+														c = 0;
+														f += 1;
+													}
 												}
 											}
+											//GameObject.Find (hit.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
+											originalPos = hit.transform.position;
+											rect.transform.position = originalPos;
+											Borders.GetStart (hit.collider.transform.position, f, c);
 										}
-										//GameObject.Find (hit.collider.name).GetComponent<MeshRenderer> ().material.color = rect.GetComponent<SpriteRenderer> ().color;
-										originalPos = hit.transform.position;
-										rect.transform.position = originalPos;
-										Borders.GetStart (hit.collider.transform.position, f, c);
 									}
 								}
 							}
