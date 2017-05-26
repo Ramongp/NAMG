@@ -35,8 +35,6 @@ public class BatallaManager : MonoBehaviour {
 	public Animator Monstruo;
 
 	void Start () {
-		//La escen anterior le cambiará el valor a level provisional
-		Level=1;
 		foreach (Slider S in turnos) {
 			S.value = 1;
 			S.interactable = false;

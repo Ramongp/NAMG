@@ -9118,7 +9118,7 @@ Prefab:
     - target: {fileID: 114533066814378418, guid: 5a1fda01a27185c44ba9390082b8ab76,
         type: 2}
       propertyPath: portraitsFace
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a1fda01a27185c44ba9390082b8ab76, type: 2}
@@ -10335,8 +10335,6 @@ GameObject:
   - component: {fileID: 1842272387}
   - component: {fileID: 1842272384}
   - component: {fileID: 1842272378}
-  - component: {fileID: 1842272396}
-  - component: {fileID: 1842272397}
   - component: {fileID: 1842272398}
   - component: {fileID: 1842272399}
   - component: {fileID: 1842272403}
@@ -10364,8 +10362,8 @@ GameObject:
   - component: {fileID: 1842272424}
   - component: {fileID: 1842272423}
   - component: {fileID: 1842272422}
-  - component: {fileID: 1842272421}
-  - component: {fileID: 1842272420}
+  - component: {fileID: 1842272396}
+  - component: {fileID: 1842272397}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -10400,7 +10398,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1842272379}
   selectedCommands:
-  - {fileID: 1842272416}
+  - {fileID: 1842272419}
   variables: []
   description: 
   stepPause: 0
@@ -10505,8 +10503,6 @@ MonoBehaviour:
   - {fileID: 1842272422}
   - {fileID: 1842272425}
   - {fileID: 1842272414}
-  - {fileID: 1842272421}
-  - {fileID: 1842272420}
   - {fileID: 1842272413}
   - {fileID: 1842272419}
 --- !u!114 &1842272380
@@ -10893,7 +10889,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1842272396
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1842272376}
@@ -10902,7 +10898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 18
+  itemId: 53
   indentLevel: 0
   display: 1
   stage: {fileID: 0}
@@ -10912,7 +10908,7 @@ MonoBehaviour:
   offset: 0
   fromPosition: {fileID: 1415043491}
   toPosition: {fileID: 1530326716}
-  facing: 0
+  facing: 2
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
@@ -10922,7 +10918,7 @@ MonoBehaviour:
   waitUntilFinished: 0
 --- !u!114 &1842272397
 MonoBehaviour:
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1842272376}
@@ -10931,7 +10927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 19
+  itemId: 54
   indentLevel: 0
   display: 1
   stage: {fileID: 0}
@@ -11545,52 +11541,6 @@ MonoBehaviour:
   targetObject: {fileID: 39629297}
   methodName: ToTutorial
   delay: 0
---- !u!114 &1842272420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1842272376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accc065c3e9a6457496f075b1bd49adc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 52
-  indentLevel: 0
-  spriteRenderer: {fileID: 546217876}
-  _duration:
-    floatRef: {fileID: 0}
-    floatVal: 1
-  _targetColor:
-    colorRef: {fileID: 0}
-    colorVal: {r: 1, g: 1, b: 1, a: 0}
-  waitUntilFinished: 1
-  durationOLD: 0
-  targetColorOLD: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &1842272421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1842272376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accc065c3e9a6457496f075b1bd49adc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 51
-  indentLevel: 0
-  spriteRenderer: {fileID: 167779417}
-  _duration:
-    floatRef: {fileID: 0}
-    floatVal: 1
-  _targetColor:
-    colorRef: {fileID: 0}
-    colorVal: {r: 1, g: 1, b: 1, a: 0}
-  waitUntilFinished: 1
-  durationOLD: 0
-  targetColorOLD: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1842272422
 MonoBehaviour:
   m_ObjectHideFlags: 0

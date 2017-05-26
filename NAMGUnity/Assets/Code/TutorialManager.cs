@@ -359,6 +359,10 @@ public class TutorialManager : MonoBehaviour {
 		MouseToTouchTutorial.crafteando = true;
 		CurrenState = EstadosDeBatalla.BLOQUE9;
 	}
+	public void FromB9toDialogue()
+	{
+		Application.LoadLevel("Dialogue2");
+	}
 	}
 
 

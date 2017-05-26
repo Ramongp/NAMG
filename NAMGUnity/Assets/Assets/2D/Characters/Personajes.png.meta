@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a95bcf0cf906fea48abeb37f9e581785
-timeCreated: 1495736535
+timeCreated: 1495782398
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -39,7 +39,7 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 2
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -93,10 +93,10 @@ TextureImporter:
       name: A
       rect:
         serializedVersion: 2
-        x: 7687
-        y: 624
-        width: 296
-        height: 467
+        x: 784
+        y: 61
+        width: 517
+        height: 834
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,10 +106,10 @@ TextureImporter:
       name: CN
       rect:
         serializedVersion: 2
-        x: 7336
-        y: 629
-        width: 299
-        height: 535
+        x: 1399
+        y: 40
+        width: 478
+        height: 912
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,10 +119,10 @@ TextureImporter:
       name: CE
       rect:
         serializedVersion: 2
-        x: 6954
-        y: 626
-        width: 335
-        height: 548
+        x: 1985
+        y: 30
+        width: 514
+        height: 923
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,10 +132,10 @@ TextureImporter:
       name: MS
       rect:
         serializedVersion: 2
-        x: 6364
-        y: 633
-        width: 517
-        height: 559
+        x: 12
+        y: 106
+        width: 751
+        height: 862
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,10 +145,10 @@ TextureImporter:
       name: NN
       rect:
         serializedVersion: 2
-        x: 6001
-        y: 644
-        width: 261
-        height: 481
+        x: 2815
+        y: 0
+        width: 516
+        height: 968
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,10 +158,10 @@ TextureImporter:
       name: NG
       rect:
         serializedVersion: 2
-        x: 5698
-        y: 644
-        width: 261
-        height: 481
+        x: 3417
+        y: 0
+        width: 537
+        height: 972
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: PN
       rect:
         serializedVersion: 2
-        x: 5329
-        y: 638
-        width: 326
-        height: 416
+        x: 4043
+        y: 63
+        width: 669
+        height: 880
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,62 +184,10 @@ TextureImporter:
       name: PS
       rect:
         serializedVersion: 2
-        x: 4956
-        y: 646
-        width: 326
-        height: 416
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: M1
-      rect:
-        serializedVersion: 2
-        x: 4011
-        y: 311
-        width: 765
-        height: 849
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: M2
-      rect:
-        serializedVersion: 2
-        x: 2961
-        y: 242
-        width: 929
-        height: 919
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: M3
-      rect:
-        serializedVersion: 2
-        x: 1801
-        y: 192
-        width: 971
-        height: 989
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: King
-      rect:
-        serializedVersion: 2
-        x: 830
-        y: 200
-        width: 700
-        height: 804
+        x: 4791
+        y: 89
+        width: 693
+        height: 850
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
