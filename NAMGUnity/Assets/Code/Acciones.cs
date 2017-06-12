@@ -29,16 +29,27 @@ public class Acciones : MonoBehaviour {
 		XAction = buttons [0].transform.position.x;
 		if (tutorial) {
 			craftTutorial = GameObject.Find ("CreadorRecetas").GetComponent<CraftTutorial> ();
+			curation = new Recipe[1] {new Recipe(30,4,0,0,4,0,PixelObjects[2],20,20)};
 		}
 		else{
 			craft = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
+			atk = 	new Recipe[6] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5),
+					new Recipe(0,32,0,0,0,0,PixelObjects[2],20,5),new Recipe(10,0,0,0,0,0,PixelObjects[3],20,5),
+					new Recipe(10,8,0,0,0,0,PixelObjects[4],20,5),new Recipe(12,12,0,12,0,0,PixelObjects[5],20,5)};
+			
+			def =	new Recipe[6] {new Recipe(0,24,8,0,0,0,PixelObjects[6],20,5),new Recipe(30,0,15,0,0,0,PixelObjects[7],20,5),
+					new Recipe(0,14,10,0,0,0,PixelObjects[8],20,5),new Recipe(0,0,27,0,0,0,PixelObjects[9],20,5),
+					new Recipe(0,0,56,0,0,0,PixelObjects[10],20,5),new Recipe(8,42,0,0,0,0,PixelObjects[11],20,5)};
+			
+			curation = new Recipe[6] {new Recipe(30,4,0,0,4,0,PixelObjects[12],20,5),new Recipe(0,0,32,0,16,0,PixelObjects[13],20,5),
+					new Recipe(4,0,0,0,8,0,PixelObjects[14],20,5),new Recipe(0,0,25,0,0,0,PixelObjects[15],20,5),
+					new Recipe(0,0,0,0,0,42,PixelObjects[16],20,5),new Recipe(48,0,0,0,0,0,PixelObjects[17],20,5)};
+			
+			spatkCa = new Recipe[2] {new Recipe(20,8,12,0,0,0,PixelObjects[18],20,5),new Recipe(24,0,30,0,0,0,PixelObjects[19],20,5)};
+			spatkAr = new Recipe[2] {new Recipe(0,6,0,0,24,0,PixelObjects[20],20,5),new Recipe(0,0,0,30,6,0,PixelObjects[21],20,5)};
+			spatkMa = new Recipe[2] {new Recipe(0,0,18,0,0,36,PixelObjects[22],20,5),new Recipe(0,0,0,0,18,8,PixelObjects[23],20,5)};
 		}
-		atk = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5)};
-		def = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(0,6,0,0,0,0,PixelObjects[0],20,5)};
-		curation = new Recipe[2] {new Recipe(30,4,0,0,4,0,PixelObjects[2],20,20),new Recipe(0,0,0,0,15,0,PixelObjects[0],20,5)};
-		spatkCa = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5)};
-		spatkAr = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,4,0,0,PixelObjects[0],20,5)};
-		spatkMa = new Recipe[2] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[0],20,5)};
+
 	}
 	
 	// Update is called once per frame
@@ -180,7 +191,7 @@ public class Acciones : MonoBehaviour {
 			buttons [i].gameObject.SetActive (true);
 			buttons [i].transform.position = new Vector3 (buttons [i].transform.position.x - buttons [i].GetComponent<RectTransform>().rect.width-buttons [i].GetComponent<RectTransform>().rect.width*((float)(i+1)/4), buttons [i].transform.position.y, buttons [i].transform.position.z);
 		}
-		Debug.Log (buttons [0].gameObject.activeSelf.ToString ());
+		//Debug.Log (buttons [0].gameObject.activeSelf.ToString ());
 	}
 
 	public void ObjetoHecho(bool bonus,string action, int b,Sprite PixelArt)

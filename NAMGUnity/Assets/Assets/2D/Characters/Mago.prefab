@@ -56,6 +56,8 @@ MonoBehaviour:
   soundEffect: {fileID: 0}
   portraits:
   - {fileID: 21300006, guid: a95bcf0cf906fea48abeb37f9e581785, type: 3}
+  - {fileID: 21300006, guid: cb2e9d35574a4304aa9e37814d17aa4e, type: 3}
+  - {fileID: 21300004, guid: cb2e9d35574a4304aa9e37814d17aa4e, type: 3}
   portraitsFace: 1
   setSayDialog: {fileID: 0}
   description: 

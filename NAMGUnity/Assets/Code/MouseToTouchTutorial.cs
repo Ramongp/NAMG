@@ -283,7 +283,7 @@ public class MouseToTouchTutorial : MonoBehaviour {
 								for (int i = 2; i <= 7; i++) {
 									for (int u = 2; u <= 6; u++) {
 										if ((i.Equals (u)) || ((i.Equals (7) && (u.Equals (6))))) {
-											Debug.Log ("fila " + i.ToString () + " Columna " + u.ToString ());
+											//Debug.Log ("fila " + i.ToString () + " Columna " + u.ToString ());
 											mat [i, u].g.GetComponentInChildren<Animator> ().SetBool ("Ver", false);
 										}
 									}

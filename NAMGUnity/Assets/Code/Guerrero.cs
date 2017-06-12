@@ -10,14 +10,17 @@ public class Guerrero{
 	public Text text;
 	public Vector3 position;
 	public Slider SSsalud,Sturno;
-	public bool defendiendo,defensagrupal,descansando;
+	public bool defendiendo, defensagrupal, descansando, alive;
 	public string clase;
 	public Image artifact;
 	public Animator heride;
+	public SpriteRenderer portrait;
 	public ParticleSystem curar, defender, augmAtaque, cargar;
 
-	public Guerrero(int salud,int curacion,int atk, int defensa,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,int aumentoDef,string clase,Text text, Image artifact,ParticleSystem curar,ParticleSystem defender,ParticleSystem augmAtaque,ParticleSystem cargar, Animator heride)
+	public Guerrero(int salud,int curacion,int atk, int defensa,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,int aumentoDef,string clase,Text text, Image artifact,ParticleSystem curar,ParticleSystem defender,ParticleSystem augmAtaque,ParticleSystem cargar, Animator heride,SpriteRenderer portrait)
 	{
+		this.portrait = portrait;
+		alive = true;
 		this.cargar = cargar;
 		this.augmAtaque = augmAtaque;
 		this.defender = defender;
@@ -49,9 +52,9 @@ public class Guerrero{
 		 int danoReal = defensa - dano;
 		if (danoReal < 0) {
 			heride.SetTrigger ("Heride");
-			salud -= dano;
+			salud += danoReal;
 			text.color = Color.red;
-			text.text = "-" + dano.ToString ();
+			text.text = "-" + danoReal.ToString ();
 			SSsalud.value = salud;
 			ShowText ();
 			//animacion de herido
@@ -78,7 +81,7 @@ public class Guerrero{
 
 	public void Defender(int n)
 	{
-		Debug.Log ("DEfendiendose");
+		//Debug.Log ("DEfendiendose");
 		defendiendo = true;
 		aumentoDefBonus = n;
 		defensa += aumentoDef+aumentoDefBonus;
@@ -135,6 +138,10 @@ public class Guerrero{
 	{
 		//sprite muerto
 		//detener su turno
+		alive=false;
+		portrait.color = Color.gray;
+		portrait.gameObject.GetComponent<Animator> ().Stop ();
+
 	}
 
 	public void ShowText()

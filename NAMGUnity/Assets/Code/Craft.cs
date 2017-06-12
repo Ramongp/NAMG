@@ -62,6 +62,11 @@ public class Craft : MonoBehaviour {
 
 		colcont = 0;
 		if ((r.roj.Equals (0)) && (r.nar.Equals (0)) && (r.lila.Equals (0))) {
+
+			if ((r.ama.Equals (0)) && (r.ver.Equals (0))) {//Pasamos al azul
+				colcont++;
+			}
+
 			colcont++;
 			rect.GetComponent<SpriteRenderer> ().color = colors [colcont];
 			reset.GetComponent<Image> ().color = colors [colcont];

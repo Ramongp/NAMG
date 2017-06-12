@@ -3,18 +3,102 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FromIntroToTutorial : MonoBehaviour {
-
+	static bool iniciado, animacion,level1;
+	public static int level;
 	// Use this for initialization
 	void Start () {
+		level1 = true;
+		if (!iniciado) {
+			Screen.SetResolution (1024, 600, true);
+			iniciado = true;
+			level = 0;
+		}
+		if (animacion) {
+			animacion = false;
+			for (int i = 1; i < 12; i++) {
+				GameObject.Find ("Franja " + i.ToString ()).GetComponent<Animator> ().SetTrigger ("Franja2");
+			}
+		}
+
+		switch (level) {
+		case 0:
+			break;
+		case 1:
+			Fungus.Flowchart.BroadcastFungusMessage ("Level1");
+			break;
+		case 2:
+			Fungus.Flowchart.BroadcastFungusMessage ("Level2");
+			break;
+		case 3:
+			Fungus.Flowchart.BroadcastFungusMessage ("Level3");
+			break;
+		case 4:
+			Fungus.Flowchart.BroadcastFungusMessage ("Level4");
+			break;
+
+		}
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+	}
+
+	public void ToIntroduction()
+	{
+		StartCoroutine (CambiarNivel ("Dialogue1"));
+
 	}
 	void ToTutorial()
 	{
-		Application.LoadLevel("Tutorial");
+		level = 1;
+		StartCoroutine (CambiarNivel ("Tutorial"));
 	}
+	public void ToD2()
+	{
+		StartCoroutine (CambiarNivel ("Dialogue2"));
+	}
+
+	public void ToLD3()
+	{
+		StartCoroutine (CambiarNivel ("Dialogue2"));
+		level = 2;
+	}
+
+	public void ToLv1()
+	{
+		Acciones.tutorial = false;
+		BatallaManager.Level = 1;
+		StartCoroutine (CambiarNivel ("Prueba"));
+	}
+
+	public void ToLv2()
+	{
+		BatallaManager.Level = 2;
+		StartCoroutine (CambiarNivel ("Prueba"));
+	}
+	public void ToLv3()
+	{
+		BatallaManager.Level = 3;
+		StartCoroutine (CambiarNivel ("Prueba"));
+	}
+
+	public void ToStart()
+	{
+		StartCoroutine (CambiarNivel ("Menu"));
+
+	}
+
+
+
+	IEnumerator CambiarNivel(string Nivel)
+	{
+		animacion = true;
+		for (int i = 1; i < 12; i++) {
+			GameObject.Find ("Franja " + i.ToString ()).GetComponent<Animator> ().SetTrigger ("Franja");
+		}
+		yield return new WaitForSeconds (1.5f);
+		Application.LoadLevel(Nivel);
+	}
+		
 }

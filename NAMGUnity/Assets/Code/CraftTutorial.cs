@@ -62,6 +62,12 @@ public class CraftTutorial : MonoBehaviour {
 
 			colcont = 0;
 			if ((r.roj.Equals (0)) && (r.nar.Equals (0)) && (r.lila.Equals (0))) {
+
+			if ((r.ama.Equals (0)) && (r.ver.Equals (0))) {//Pasamos al azul
+				Debug.Log("Pasamos al azul");
+				colcont++;
+			}
+
 				colcont++;
 				rect.GetComponent<SpriteRenderer> ().color = colors [colcont];
 				reset.GetComponent<Image> ().color = colors [colcont];
@@ -103,7 +109,7 @@ public class CraftTutorial : MonoBehaviour {
 					if ((CurrentRecipe.ama.Equals (0)) && (CurrentRecipe.nar.Equals (0)) && (CurrentRecipe.ver.Equals (0)) && (CurrentRecipe.lila.Equals (0)) && (CurrentRecipe.azu.Equals (0))) {
 						//Objeto Acabado
 						startcrafting = false;
-						Debug.Log ("Objeto Acabado");
+						//Debug.Log ("Objeto Acabado");
 						MostrarCasillas ();
 						reset.GetComponent<Image> ().color = Color.white;
 						acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
@@ -146,7 +152,7 @@ public class CraftTutorial : MonoBehaviour {
 					{
 						//Objeto acabado
 						startcrafting = false;
-						Debug.Log ("Objeto Acabado");
+						//Debug.Log ("Objeto Acabado");
 						MostrarCasillas ();
 						reset.GetComponent<Image> ().color = Color.white;
 						acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
@@ -184,7 +190,7 @@ public class CraftTutorial : MonoBehaviour {
 					}
 
 					startcrafting = false;
-					Debug.Log("Objeto Acabado");
+					//Debug.Log("Objeto Acabado");
 					MostrarCasillas ();
 					reset.GetComponent<Image> ().color = Color.white;
 					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);

@@ -15,9 +15,11 @@ public class Monstruo{
 	public int aumentoatk=12,ralentizar;
 	public Animator heride;
 	public ParticleSystem cargar;
+	public SpriteRenderer portrait;
 
-	public Monstruo(int salud,int atk,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,Animator heride,ParticleSystem cargar,Text text,Guerrero G1,Guerrero G2, Guerrero G3)
+	public Monstruo(int salud,int atk,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,Animator heride,ParticleSystem cargar,Text text,Guerrero G1,Guerrero G2, Guerrero G3,SpriteRenderer portrait)
 	{
+		this.portrait = portrait;
 		this.cargar = cargar;
 		this.heride = heride;
 		guerreros = new Guerrero[] { G1, G2, G3 };
@@ -40,22 +42,28 @@ public class Monstruo{
 	{
 		foreach(Guerrero gu in guerreros) //Enemigos que mata con el ataque
 		{
-			if ((gu.salud - atk) <= 0) {
+			if (((gu.salud - atk) <= 0) && (gu.alive)) {
 				Atacar (gu);
 				return;
 			}
 		}
 
-		int i = Random.Range (1, 2);
+		int i = Random.Range (1, 3);
 
 		if (i.Equals (1)) {
-			Guerrero objetivo = guerreros [Random.Range (0, 3)];
-			foreach(Guerrero gu in guerreros) //Enemigos que mata con el ataque
+			Guerrero objetivo = guerreros [Random.Range (0, guerreros.Length)];
+			if (!objetivo.alive) {
+				foreach (Guerrero gu in guerreros) {
+					if (gu.alive)
+						objetivo = gu;
+				}
+			}
+			/*foreach(Guerrero gu in guerreros) //Enemigos que mata con el ataque //Demasiada dificultad
 			{
 				if (gu.salud/gu.saludMax < objetivo.salud/objetivo.saludMax) {
 					objetivo=gu;
 				}
-			}
+			}*/
 			Atacar (objetivo);
 		}
 		else {
@@ -81,7 +89,7 @@ public class Monstruo{
 	public void RecibirDano(int dano)
 	{ //Pasamos un valor de daño positivo
 
-		Debug.Log ("le ha herido con "+ dano.ToString());
+		//Debug.Log ("le ha herido con "+ dano.ToString());
 			salud -= dano;
 		text.color = Color.red;
 			text.text = "-" + dano.ToString ();
@@ -113,6 +121,7 @@ public class Monstruo{
 			//animacion ataque especial
 			int[] condena = new int[] {atk,atk+aumentoatk,atk-aumentoatk/2};
 			foreach (Guerrero gu in guerreros) {
+				if(gu.alive)
 				gu.RecibirDano (condena [Random.Range (0, 2)]);
 			}
 		}

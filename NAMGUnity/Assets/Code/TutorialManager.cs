@@ -51,10 +51,10 @@ public class TutorialManager : MonoBehaviour {
 			action = GameObject.Find ("Actions").GetComponent<Acciones> ();
 			action.Hide ();//Esconder los botones
 			guerreros = new Guerrero[] {
-				new Guerrero (100, 20, 20, 20, 10, anim [0], salud [0], turnos [0], posicion [0].position, 10, "Caballero", textos [0], artifacts [0],particulas[0],particulas[1],particulas[2],particulas[3],heridas[0]),
+			new Guerrero (100, 20, 20, 20, 10, anim [0], salud [0], turnos [0], posicion [0].position, 10, "Caballero", textos [0], artifacts [0],particulas[0],particulas[1],particulas[2],particulas[3],heridas[0],new SpriteRenderer()),
 				//Provisional: Arquero Original 10 seg, por ahora 2 tiempoturno Mago 15
-				new Guerrero (80, 20, 20, 20, 3, anim [1], salud [1], turnos [1], posicion [1].position, 10, "Arquero", textos [1], artifacts [1],particulas[4],particulas[5],particulas[6],particulas[7],heridas[1]),
-				new Guerrero (90, 20, 20, 20, 5, anim [2], salud [2], turnos [2], posicion [2].position, 10, "Mago", textos [2], artifacts [2],particulas[8],particulas[9],particulas[10],particulas[11],heridas[2])
+			new Guerrero (80, 20, 20, 20, 3, anim [1], salud [1], turnos [1], posicion [1].position, 10, "Arquero", textos [1], artifacts [1],particulas[4],particulas[5],particulas[6],particulas[7],heridas[1],new SpriteRenderer()),
+			new Guerrero (90, 20, 20, 20, 5, anim [2], salud [2], turnos [2], posicion [2].position, 10, "Mago", textos [2], artifacts [2],particulas[8],particulas[9],particulas[10],particulas[11],heridas[2],new SpriteRenderer())
 			};
 			//Le pasa el nivel segun el nivel, el monstruo Original 100 provisional 3
 		CurrenState = EstadosDeBatalla.BLOQUE1;
@@ -117,6 +117,7 @@ public class TutorialManager : MonoBehaviour {
 
 			case (EstadosDeBatalla.EFECTO):
 				Efecto (action.bonus, action.CurrenAction,action.CurrentGuerrero);
+				CurrenState = EstadosDeBatalla.ESCOGIENDO;
 				break;
 
 
@@ -265,11 +266,12 @@ public class TutorialManager : MonoBehaviour {
 
 		IEnumerator ShowArtifact(Guerrero g)
 		{
-			yield return new WaitForSeconds (0.5f);
+			yield return new WaitForSeconds (1);
 			//Mostrar Objeto
 			Debug.Log ("Mostarar Objeto");
 			g.artifact.overrideSprite = Acciones.CurrentObject.sprite;
 			g.artifact.GetComponent<Animator> ().SetTrigger("Show");
+			//CurrenState = EstadosDeBatalla.ESPERANDO;
 		}
 
 
@@ -358,10 +360,6 @@ public class TutorialManager : MonoBehaviour {
 	{
 		MouseToTouchTutorial.crafteando = true;
 		CurrenState = EstadosDeBatalla.BLOQUE9;
-	}
-	public void FromB9toDialogue()
-	{
-		Application.LoadLevel("Dialogue2");
 	}
 	}
 
