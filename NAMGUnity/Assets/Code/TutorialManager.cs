@@ -35,8 +35,10 @@ public class TutorialManager : MonoBehaviour {
 		public Image[] artifacts;
 		public ParticleSystem[] particulas;
 		public Animator[] heridas;
-
+		public AudioClip[] Sonidos;
+		private AudioSource A;
 		void Start () {
+		A = this.gameObject.GetComponent<AudioSource> ();
 		Acciones.tutorial = true;
 			//La escen anterior le cambiará el valor a level provisional
 			Level=1;
@@ -122,6 +124,7 @@ public class TutorialManager : MonoBehaviour {
 
 
 			case(EstadosDeBatalla.CARGA):
+			A.PlayOneShot (Sonidos [0]);
 				action.CurrentGuerrero.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", false);
 				action.CurrentGuerrero.Sturno.value = 1;
 				StartCoroutine(StopTexto(action.CurrentGuerrero));
@@ -201,6 +204,7 @@ public class TutorialManager : MonoBehaviour {
 
 			case "curation":
 				//Mostrar Objeto
+			A.PlayOneShot (Sonidos [1]);
 				StartCoroutine(ShowArtifact(g));
 
 				StartCoroutine (StopTexto (g));

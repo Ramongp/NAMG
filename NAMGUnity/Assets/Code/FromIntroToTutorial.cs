@@ -5,8 +5,10 @@ using UnityEngine;
 public class FromIntroToTutorial : MonoBehaviour {
 	static bool iniciado, animacion,level1;
 	public static int level;
+	private AudioSource A;
 	// Use this for initialization
 	void Start () {
+		A = this.gameObject.GetComponent<AudioSource> ();
 		level1 = true;
 		if (!iniciado) {
 			Screen.SetResolution (1024, 600, true);
@@ -19,7 +21,6 @@ public class FromIntroToTutorial : MonoBehaviour {
 				GameObject.Find ("Franja " + i.ToString ()).GetComponent<Animator> ().SetTrigger ("Franja2");
 			}
 		}
-
 		switch (level) {
 		case 0:
 			break;
@@ -46,6 +47,8 @@ public class FromIntroToTutorial : MonoBehaviour {
 
 	public void ToIntroduction()
 	{
+		AudioClip correct = Resources.Load ("Sounds/Correct") as AudioClip;
+		A.PlayOneShot (correct);
 		StartCoroutine (CambiarNivel ("Dialogue1"));
 
 	}

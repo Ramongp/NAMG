@@ -34,8 +34,11 @@ public class BatallaManager : MonoBehaviour {
 	public Animator[] heridas;
 	public Animator Monstruo;
 	public SpriteRenderer[] Portraits;
+	public AudioClip[] Sonidos;
+	private AudioSource A;
 
 	void Start () {
+		A = this.gameObject.GetComponent<AudioSource> ();
 		foreach (Slider S in turnos) {
 			S.value = 1;
 			S.interactable = false;
@@ -53,7 +56,7 @@ public class BatallaManager : MonoBehaviour {
 			new Guerrero (90, 10, 20, 3, 5, anim [2], salud [2], turnos [2], posicion [2].position, 2, "Mago", textos [2], artifacts [2],particulas[8],particulas[9],particulas[10],particulas[11],heridas[2],Portraits[2])
 		};
 		//Le pasa el nivel segun el nivel, el monstruo Original 100 provisional 3
-		M= new Monstruo (20,20,8,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
+		M= new Monstruo (200,20,8,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
 		CurrenState = EstadosDeBatalla.ESPERANDO;
 
 
@@ -137,6 +140,7 @@ public class BatallaManager : MonoBehaviour {
 			break;
 
 		case(EstadosDeBatalla.CARGA):
+			A.PlayOneShot (Sonidos [0]);
 			action.CurrentGuerrero.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", false);
 			action.CurrentGuerrero.Sturno.value = 1;
 			StartCoroutine(StopTexto(action.CurrentGuerrero));
@@ -223,7 +227,7 @@ public class BatallaManager : MonoBehaviour {
 		case "curation":
 			//Mostrar Objeto
 				StartCoroutine(ShowArtifact(g));
-
+			A.PlayOneShot (Sonidos [1]);
 			StartCoroutine (StopTexto (g));
 			g.Curar (bonus);
 			if (g.descansando)
@@ -234,6 +238,7 @@ public class BatallaManager : MonoBehaviour {
 		case "SpecialAtkDaño":
 			//Mostrar Objeto
 					StartCoroutine(ShowArtifact(g));
+			A.PlayOneShot (Sonidos [3]);
 
 			//Animacion special
 			M.RecibirDano (g.atk + bonus);
@@ -244,7 +249,7 @@ public class BatallaManager : MonoBehaviour {
 		case "SpecialAtkAumentoDaño":
 			//Mostrar Objeto
 			StartCoroutine(ShowArtifact(g));
-
+			A.PlayOneShot (Sonidos [0]);
 			//animacion special
 			foreach( Guerrero gu in guerreros)
 			{
@@ -256,7 +261,7 @@ public class BatallaManager : MonoBehaviour {
 		case "CuracionGrupal":
 			//Mostrar Objeto
 			StartCoroutine(ShowArtifact(g));
-						
+			A.PlayOneShot (Sonidos [1]);	
 			//animacion special
 			foreach( Guerrero gu in guerreros)
 			{
@@ -267,6 +272,7 @@ public class BatallaManager : MonoBehaviour {
 		case "DormirMonstruo":
 			//Mostrar Objeto
 			StartCoroutine(ShowArtifact(g));
+			A.PlayOneShot (Sonidos [3]);
 			//animacion special
 			M.Ralentizar (bonus);
 			StartCoroutine (StopRalentizar ());
@@ -316,6 +322,7 @@ public class BatallaManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (2);
 		//Mostrar Objeto
+		A.PlayOneShot (Sonidos [3]);
 		g.artifact.overrideSprite = Acciones.CurrentObject.sprite;
 		g.artifact.GetComponent<Animator> ().SetTrigger("Attack");
 		M.heride.SetTrigger ("Heride");
@@ -403,7 +410,9 @@ public class BatallaManager : MonoBehaviour {
 
 	IEnumerator Win()
 	{
-
+		
+		yield return new WaitForSeconds (2f);
+		CurrenState = EstadosDeBatalla.WIN;
 		yield return new WaitForSeconds (2f);
 		CurrenState = EstadosDeBatalla.ESCOGIENDO;
 		FromIntroToTutorial.level = Level + 1;
@@ -412,5 +421,15 @@ public class BatallaManager : MonoBehaviour {
 		}
 		yield return new WaitForSeconds (1.5f);
 		Application.LoadLevel("Dialogue2");
+	}
+
+	void OnGUI(){
+		if (CurrenState.Equals (EstadosDeBatalla.WIN)) {
+			GUIStyle custom = new GUIStyle ("custom");
+			custom.fontSize = 100;
+			custom.alignment = TextAnchor.MiddleCenter;
+			GUI.Button (new Rect (0, 0, Screen.width, Screen.height), "Has Ganado",custom);
+		}
+
 	}
 }

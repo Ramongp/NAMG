@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class Pause : MonoBehaviour {
 	public GameObject Salir,Continuar,dark;
+	private AudioSource A;
 	// Use this for initialization
 	void Start () {
+		A = this.gameObject.GetComponent<AudioSource> ();
 		DontDestroyOnLoad(this.gameObject);
-		Seguir ();
+		Time.timeScale = 1;
+		Salir.SetActive (false);
+		Continuar.SetActive(false);
+		dark.SetActive (false);
 
 	}
 	
@@ -19,6 +24,8 @@ public class Pause : MonoBehaviour {
 
 	public void Pausar()
 	{
+		AudioClip correct = Resources.Load ("Sounds/Correct") as AudioClip;
+		A.PlayOneShot (correct);
 		Time.timeScale = 0;
 		Salir.SetActive (true);
 		Continuar.SetActive (true);
@@ -28,6 +35,8 @@ public class Pause : MonoBehaviour {
 
 	public void Seguir()
 	{
+		AudioClip correct = Resources.Load ("Sounds/Correct") as AudioClip;
+		A.PlayOneShot (correct);
 		Time.timeScale = 1;
 		Salir.SetActive (false);
 		Continuar.SetActive(false);
@@ -37,6 +46,8 @@ public class Pause : MonoBehaviour {
 	}
 	public void SalirDelJuego()
 	{
+		AudioClip correct = Resources.Load ("Sounds/Correct") as AudioClip;
+		A.PlayOneShot (correct);
 		Application.Quit ();
 	}
 

@@ -19,8 +19,13 @@ public class Acciones : MonoBehaviour {
 	float YImage;
 	float XAction;
 	Text textbonus;
+	private AudioClip sonido;
+	private AudioSource A;
 	// Use this for initialization
 	void Start () {
+		//Sonido
+		sonido = Resources.Load<AudioClip> ("Sounds/Correct");
+		A=this.gameObject.GetComponent<AudioSource> ();
 		textbonus = GameObject.Find ("CurrentObject").GetComponentInChildren<Text> ();
 		CurrentObject = GameObject.Find ("CurrentObject").GetComponent<Image>();
 		YImage = CurrentObject.transform.position.y;
@@ -81,6 +86,7 @@ public class Acciones : MonoBehaviour {
 
 	public void attack ()
 	{
+		A.PlayOneShot (sonido);
 		craft.ShowRecipe (atk [Random.Range (0, atk.Length)],"atk");
 		MouseToTouch.crafteando = true;
 		Hide ();
@@ -88,6 +94,7 @@ public class Acciones : MonoBehaviour {
 
 	public void defend ()
 	{
+		A.PlayOneShot (sonido);
 		craft.ShowRecipe (def [Random.Range (0, def.Length)],"def");
 		MouseToTouch.crafteando = true;
 		Hide ();
@@ -95,6 +102,7 @@ public class Acciones : MonoBehaviour {
 
 	public void heal()
 	{
+		A.PlayOneShot (sonido);
 		if (tutorial) {
 			craftTutorial.ShowRecipe (curation [0], "curation");
 			Fungus.Flowchart.BroadcastFungusMessage ("Bloque5");
@@ -110,6 +118,7 @@ public class Acciones : MonoBehaviour {
 
 	public void specialattak ()
 	{
+		A.PlayOneShot (sonido);
 		if (CurrentGuerrero.carga < 3) {
 			Hide ();
 			CurrentGuerrero.Cargar ();
@@ -196,6 +205,11 @@ public class Acciones : MonoBehaviour {
 
 	public void ObjetoHecho(bool bonus,string action, int b,Sprite PixelArt)
 	{
+		//Sonido
+		AudioClip correct = Resources.Load ("Sounds/ObjectMade") as AudioClip;
+		AudioSource A = GameObject.Find ("SoundManager").GetComponent <AudioSource>();
+		A.PlayOneShot(correct);
+
 		//Aquí realizo la acción si es un ataque
 		CurrentObject.sprite=PixelArt;
 		ShowPixelArt ();

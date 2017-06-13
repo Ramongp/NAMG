@@ -45,6 +45,11 @@ public class Craft : MonoBehaviour {
 	}
 	public void ShowRecipe(Recipe r,string action)
 	{
+		//Sonido
+		AudioClip correct = Resources.Load ("Assets/Sounds/Correct") as AudioClip;
+		AudioSource A = GameObject.Find ("SoundManager").GetComponent <AudioSource>();
+		A.PlayOneShot(correct);
+
 		foreach (GameObject g in Nums) {
 			g.SetActive (true);
 		}

@@ -18,9 +18,10 @@ public class MouseToTouchTutorial : MonoBehaviour {
 		Stack <Color> CasillasYaCol;
 		Color Roj,Ama,Azu,Nar,Verd,Lila;
 	bool bloque6,bloque7,bloque8;
-
+	private AudioSource A;
 		// Use this for initialization
 		void Start () {
+		A = this.gameObject.GetComponent<AudioSource> ();
 		bloque6 = true;
 		bloque7 = true;
 		bloque8 = true;
@@ -272,6 +273,8 @@ public class MouseToTouchTutorial : MonoBehaviour {
 							g.CorrectRect (Borders.Fcont * Borders.Ccont);
 
 						if (correcto) {
+							AudioClip correct = Resources.Load ("Sounds/Correct") as AudioClip;
+							A.PlayOneShot (correct);
 							result.GetComponent<Text> ().color = Color.green;
 							correcto = false;
 							if (TutorialManager.CurrenState.Equals (TutorialManager.EstadosDeBatalla.BLOQUE8)) {
@@ -294,6 +297,8 @@ public class MouseToTouchTutorial : MonoBehaviour {
 
 
 						} else {
+							AudioClip fail = Resources.Load ("Sounds/Fail") as AudioClip;
+							A.PlayOneShot (fail);
 							if (TutorialManager.CurrenState.Equals (TutorialManager.EstadosDeBatalla.BLOQUE6)) {
 								Fungus.Flowchart.BroadcastFungusMessage ("BloqueEquivocado");
 							}

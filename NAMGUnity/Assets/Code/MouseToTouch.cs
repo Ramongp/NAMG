@@ -16,9 +16,11 @@ public class MouseToTouch : MonoBehaviour {
 	Stack <GameObject> CasillasYaPint;
 	Stack <Color> CasillasYaCol;
 	Color Roj,Ama,Azu,Nar,Verd,Lila;
+	private AudioSource A;
 
 	// Use this for initialization
 	void Start () {
+		A = this.gameObject.GetComponent<AudioSource> ();
 		crafteando = false;
 		//Resultado en esquina
 		result =GameObject.Find("Resultado");
@@ -220,6 +222,11 @@ public class MouseToTouch : MonoBehaviour {
 						if (correcto) {
 							result.GetComponent<Text> ().color = Color.green;
 							correcto = false;
+							AudioClip correct = Resources.Load ("Sounds/Correct") as AudioClip;
+							A.PlayOneShot (correct);
+						} else {
+							AudioClip fail = Resources.Load ("Sounds/Fail") as AudioClip;
+							A.PlayOneShot (fail);
 						}
 
 						Borders.Refresh ();
