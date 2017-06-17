@@ -50,9 +50,9 @@ public class Acciones : MonoBehaviour {
 					new Recipe(4,0,0,0,8,0,PixelObjects[14],20,5),new Recipe(0,0,25,0,0,0,PixelObjects[15],20,5),
 					new Recipe(0,0,0,0,0,42,PixelObjects[16],20,5),new Recipe(48,0,0,0,0,0,PixelObjects[17],20,5)};
 			
-			spatkCa = new Recipe[2] {new Recipe(20,8,12,0,0,0,PixelObjects[18],20,5),new Recipe(24,0,30,0,0,0,PixelObjects[19],20,5)};
+			spatkCa = new Recipe[2] {new Recipe(20,8,0,12,0,0,PixelObjects[18],20,5),new Recipe(24,0,30,0,0,0,PixelObjects[19],20,5)};
 			spatkAr = new Recipe[2] {new Recipe(0,6,0,0,24,0,PixelObjects[20],20,5),new Recipe(0,0,0,30,6,0,PixelObjects[21],20,5)};
-			spatkMa = new Recipe[2] {new Recipe(0,0,18,0,0,36,PixelObjects[22],20,5),new Recipe(0,0,0,0,18,8,PixelObjects[23],20,5)};
+			spatkMa = new Recipe[2] {new Recipe(0,0,18,0,0,36,PixelObjects[22],20,5),new Recipe(0,0,0,0,18,9,PixelObjects[23],20,5)};
 		}
 
 	}
@@ -133,7 +133,7 @@ public class Acciones : MonoBehaviour {
 		switch (CurrentGuerrero.clase) {
 
 		case "Caballero":
-			int i = Random.Range (0, 1);
+			int i = Random.Range (0, 2);
 			if(i.Equals(0))
 				craft.ShowRecipe (spatkCa [0],"SpecialAtkDaño");
 			else
@@ -142,7 +142,7 @@ public class Acciones : MonoBehaviour {
 
 
 		case "Arquero":
-			int e = Random.Range (0, 1);
+			int e = Random.Range (0, 2);
 			if(e.Equals(0))
 				craft.ShowRecipe (spatkAr [0],"CuracionGrupal");
 			else
@@ -150,7 +150,7 @@ public class Acciones : MonoBehaviour {
 			break;
 
 		case "Mago":
-			int u = Random.Range (0, 1);
+			int u = Random.Range (0, 2);
 			if(u.Equals(0))
 				craft.ShowRecipe (spatkMa [0],"ProteccionGrupal");
 			else

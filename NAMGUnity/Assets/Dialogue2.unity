@@ -1028,6 +1028,92 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &662531428
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4100928838640706, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581887671225222, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581887671225222, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581887671225222, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848377767019094, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848377767019094, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848377767019094, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616425239351578, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616425239351578, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616425239351578, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9e972c73591f1114a8a85e396b375851, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &809776244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,11 +1265,17 @@ GameObject:
   - component: {fileID: 809776385}
   - component: {fileID: 809776376}
   - component: {fileID: 809776393}
-  - component: {fileID: 809776392}
   - component: {fileID: 809776391}
-  - component: {fileID: 809776390}
   - component: {fileID: 809776389}
+  - component: {fileID: 809776396}
+  - component: {fileID: 809776395}
+  - component: {fileID: 809776394}
+  - component: {fileID: 809776392}
+  - component: {fileID: 809776390}
   - component: {fileID: 809776388}
+  - component: {fileID: 809776397}
+  - component: {fileID: 809776398}
+  - component: {fileID: 809776399}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -1216,9 +1308,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 809776340}
-  selectedCommands:
-  - {fileID: 809776306}
+  - {fileID: 809776246}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -1270,7 +1361,7 @@ MonoBehaviour:
   - {fileID: 809776269}
   - {fileID: 809776256}
   - {fileID: 809776393}
-  - {fileID: 809776392}
+  - {fileID: 809776396}
   - {fileID: 809776255}
   - {fileID: 809776253}
   - {fileID: 809776254}
@@ -1281,6 +1372,7 @@ MonoBehaviour:
   - {fileID: 809776249}
   - {fileID: 809776273}
   - {fileID: 809776270}
+  - {fileID: 809776395}
   - {fileID: 809776272}
   - {fileID: 809776271}
 --- !u!114 &809776247
@@ -1615,7 +1707,7 @@ MonoBehaviour:
   itemId: 8
   indentLevel: 0
   storyText: "Ellos tambi\xE9n pueden cargar ataques especiales y tambi\xE9n tardan
-    3 turnos, as\xED que al tercero deber\xEDas tener un objeto de defensa u os har\xE1n
+    3 turnos, as\xED que al tercero deber\xEDais tener un objeto de defensa u os har\xE1n
     bastante da\xF1o."
   description: 
   character: {fileID: 1038365878}
@@ -2055,7 +2147,7 @@ MonoBehaviour:
   - {fileID: 809776285}
   - {fileID: 809776284}
   - {fileID: 809776391}
-  - {fileID: 809776390}
+  - {fileID: 809776394}
   - {fileID: 809776283}
   - {fileID: 809776282}
   - {fileID: 809776281}
@@ -2065,6 +2157,7 @@ MonoBehaviour:
   - {fileID: 809776275}
   - {fileID: 809776296}
   - {fileID: 809776277}
+  - {fileID: 809776392}
   - {fileID: 809776297}
 --- !u!114 &809776277
 MonoBehaviour:
@@ -2879,7 +2972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 81
   indentLevel: 0
-  storyText: 'No le des los componentes de la llave es un traidor. '
+  storyText: 'No le des los componentes de la llave, es un traidor. '
   description: 
   character: {fileID: 660196689}
   portrait: {fileID: 0}
@@ -3202,7 +3295,7 @@ MonoBehaviour:
   portrait: {fileID: 21300008, guid: cb2e9d35574a4304aa9e37814d17aa4e, type: 3}
   offset: 0
   fromPosition: {fileID: 0}
-  toPosition: {fileID: 429871049}
+  toPosition: {fileID: 0}
   facing: 0
   useDefaultSettings: 1
   fadeDuration: 0.5
@@ -3726,6 +3819,7 @@ MonoBehaviour:
   - {fileID: 809776364}
   - {fileID: 809776368}
   - {fileID: 809776367}
+  - {fileID: 809776399}
   - {fileID: 809776366}
   - {fileID: 809776365}
   - {fileID: 809776378}
@@ -3790,6 +3884,7 @@ MonoBehaviour:
   - {fileID: 809776331}
   - {fileID: 809776330}
   - {fileID: 809776329}
+  - {fileID: 809776320}
   - {fileID: 809776328}
   - {fileID: 809776342}
   - {fileID: 809776327}
@@ -3799,13 +3894,14 @@ MonoBehaviour:
   - {fileID: 809776323}
   - {fileID: 809776322}
   - {fileID: 809776321}
-  - {fileID: 809776320}
+  - {fileID: 809776397}
   - {fileID: 809776319}
   - {fileID: 809776318}
   - {fileID: 809776316}
   - {fileID: 809776317}
   - {fileID: 809776315}
   - {fileID: 809776314}
+  - {fileID: 809776398}
   - {fileID: 809776313}
   - {fileID: 809776312}
   - {fileID: 809776311}
@@ -3816,7 +3912,7 @@ MonoBehaviour:
   - {fileID: 809776307}
   - {fileID: 809776306}
   - {fileID: 809776389}
-  - {fileID: 809776388}
+  - {fileID: 809776390}
   - {fileID: 809776305}
   - {fileID: 809776343}
   - {fileID: 809776304}
@@ -3826,6 +3922,7 @@ MonoBehaviour:
   - {fileID: 809776300}
   - {fileID: 809776299}
   - {fileID: 809776298}
+  - {fileID: 809776388}
   - {fileID: 809776341}
 --- !u!114 &809776341
 MonoBehaviour:
@@ -4344,7 +4441,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 109
   indentLevel: 0
-  storyText: "Toma \xBFCrees que puedes arreglarla?"
+  storyText: "Toma \xBFCrees que puedes arreglar la llave ahora que tenemos todos
+    los pedazos?"
   description: 
   character: {fileID: 1038365878}
   portrait: {fileID: 0}
@@ -4985,14 +5083,14 @@ MonoBehaviour:
   replacedCharacter: {fileID: 286017750}
   portrait: {fileID: 21300000, guid: 778348bf72157f944bb0eb5c11fe0afd, type: 3}
   offset: 0
-  fromPosition: {fileID: 0}
+  fromPosition: {fileID: 292678984}
   toPosition: {fileID: 0}
   facing: 2
   useDefaultSettings: 1
   fadeDuration: 0.5
   moveDuration: 1
   shiftOffset: {x: 0, y: 0}
-  move: 0
+  move: 1
   shiftIntoPlace: 0
   waitUntilFinished: 0
 --- !u!114 &809776387
@@ -5032,15 +5130,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 809776244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1902400ccc99b45d69ad01cb86b57d0f, type: 3}
+  m_Script: {fileID: 11500000, guid: bc30c92f7ffe3d746ac76cd528d616e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 148
+  itemId: 154
   indentLevel: 0
-  musicClip: {fileID: 8300000, guid: ed0a502197beabd45b9bc0e5896c5154, type: 3}
-  atTime: 0
-  loop: 1
-  fadeDuration: 1
+  control: 2
+  _audioSource:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 1943813071}
+  startVolume: 1
+  endVolume: 1
+  fadeDuration: 0
+  waitUntilFinished: 0
+  audioSourceOLD: {fileID: 0}
 --- !u!114 &809776389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5071,15 +5174,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 809776244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1902400ccc99b45d69ad01cb86b57d0f, type: 3}
+  m_Script: {fileID: 11500000, guid: bc30c92f7ffe3d746ac76cd528d616e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 146
+  itemId: 153
   indentLevel: 0
-  musicClip: {fileID: 8300000, guid: ed0a502197beabd45b9bc0e5896c5154, type: 3}
-  atTime: 0
-  loop: 1
-  fadeDuration: 1
+  control: 1
+  _audioSource:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 1943813071}
+  startVolume: 1
+  endVolume: 1
+  fadeDuration: 0
+  waitUntilFinished: 0
+  audioSourceOLD: {fileID: 0}
 --- !u!114 &809776391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5110,15 +5218,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 809776244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1902400ccc99b45d69ad01cb86b57d0f, type: 3}
+  m_Script: {fileID: 11500000, guid: bc30c92f7ffe3d746ac76cd528d616e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 144
+  itemId: 152
   indentLevel: 0
-  musicClip: {fileID: 8300000, guid: ed0a502197beabd45b9bc0e5896c5154, type: 3}
-  atTime: 0
-  loop: 1
-  fadeDuration: 1
+  control: 2
+  _audioSource:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 1943813071}
+  startVolume: 1
+  endVolume: 1
+  fadeDuration: 0
+  waitUntilFinished: 0
+  audioSourceOLD: {fileID: 0}
 --- !u!114 &809776393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5141,6 +5254,159 @@ MonoBehaviour:
   fadeDuration: 0
   waitUntilFinished: 0
   audioSourceOLD: {fileID: 0}
+--- !u!114 &809776394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809776244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc30c92f7ffe3d746ac76cd528d616e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 151
+  indentLevel: 0
+  control: 1
+  _audioSource:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 1943813071}
+  startVolume: 1
+  endVolume: 1
+  fadeDuration: 0
+  waitUntilFinished: 0
+  audioSourceOLD: {fileID: 0}
+--- !u!114 &809776395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809776244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc30c92f7ffe3d746ac76cd528d616e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 150
+  indentLevel: 0
+  control: 2
+  _audioSource:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 1943813071}
+  startVolume: 1
+  endVolume: 1
+  fadeDuration: 0
+  waitUntilFinished: 0
+  audioSourceOLD: {fileID: 0}
+--- !u!114 &809776396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809776244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc30c92f7ffe3d746ac76cd528d616e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 149
+  indentLevel: 0
+  control: 1
+  _audioSource:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 1943813071}
+  startVolume: 1
+  endVolume: 1
+  fadeDuration: 0
+  waitUntilFinished: 0
+  audioSourceOLD: {fileID: 0}
+--- !u!114 &809776397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809776244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 155
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 1038365878}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 21300008, guid: cb2e9d35574a4304aa9e37814d17aa4e, type: 3}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 0}
+  facing: 2
+  useDefaultSettings: 1
+  fadeDuration: 0.5
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &809776398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809776244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 156
+  indentLevel: 0
+  display: 1
+  stage: {fileID: 0}
+  character: {fileID: 1038365878}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 0}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 970724602}
+  facing: 1
+  useDefaultSettings: 1
+  fadeDuration: 0.5
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
+--- !u!114 &809776399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809776244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac5ce55bc698fa4290939ef6e426501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 157
+  indentLevel: 0
+  display: 4
+  stage: {fileID: 0}
+  character: {fileID: 1038365878}
+  replacedCharacter: {fileID: 0}
+  portrait: {fileID: 0}
+  offset: 0
+  fromPosition: {fileID: 0}
+  toPosition: {fileID: 0}
+  facing: 0
+  useDefaultSettings: 1
+  fadeDuration: 0.5
+  moveDuration: 1
+  shiftOffset: {x: 0, y: 0}
+  move: 0
+  shiftIntoPlace: 0
+  waitUntilFinished: 0
 --- !u!1 &954982130
 GameObject:
   m_ObjectHideFlags: 0
@@ -5473,15 +5739,15 @@ RectTransform:
   m_GameObject: {fileID: 1369532777}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 1.327449, y: 1.2233446, z: 1.0411365}
   m_Children: []
   m_Father: {fileID: 525509657}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 53}
-  m_SizeDelta: {x: 3009, y: 1284}
+  m_AnchoredPosition: {x: 0, y: 49}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1369532779
 MonoBehaviour:
@@ -6001,6 +6267,115 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1937400617}
+--- !u!1 &1943813070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1943813072}
+  - component: {fileID: 1943813071}
+  m_Layer: 0
+  m_Name: BadGuyMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1943813071
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1943813070}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ed0a502197beabd45b9bc0e5896c5154, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &1943813072
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1943813070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 512, y: 353, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1999186712
 GameObject:
   m_ObjectHideFlags: 0

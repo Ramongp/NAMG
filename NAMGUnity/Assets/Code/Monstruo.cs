@@ -12,10 +12,11 @@ public class Monstruo{
 	public Slider SSsalud,Sturno;
 	bool defendiendo,defensagrupal;
 	Guerrero[] guerreros;
-	public int aumentoatk=12,ralentizar;
+	public int aumentoatk=30,ralentizar;
 	public Animator heride;
 	public ParticleSystem cargar;
 	public SpriteRenderer portrait;
+	public bool charging;
 
 	public Monstruo(int salud,int atk,int tiempoTurno, Animator anim,Slider SSalud,Slider Sturno, Vector3 position,Animator heride,ParticleSystem cargar,Text text,Guerrero G1,Guerrero G2, Guerrero G3,SpriteRenderer portrait)
 	{
@@ -48,7 +49,7 @@ public class Monstruo{
 			}
 		}
 
-		int i = Random.Range (1, 3);
+		int i = Random.Range (1, 4);
 
 		if (i.Equals (1)) {
 			Guerrero objetivo = guerreros [Random.Range (0, guerreros.Length)];
@@ -108,6 +109,7 @@ public class Monstruo{
 	}
 
 	void Cargar(){
+		charging = true;
 		if (carga < 3) {
 			cargar.gameObject.SetActive (true);
 			carga++;
@@ -117,7 +119,7 @@ public class Monstruo{
 			ShowText ();
 		}
 		else {
-			carga = 0;
+			carga++;
 			//animacion ataque especial
 			int[] condena = new int[] {atk,atk+aumentoatk,atk-aumentoatk/2};
 			foreach (Guerrero gu in guerreros) {

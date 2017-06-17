@@ -202,13 +202,13 @@ public class TutorialManager : MonoBehaviour {
 					g.descansando = false;
 				break;
 
-			case "curation":
+		case "curation":
 				//Mostrar Objeto
 			A.PlayOneShot (Sonidos [1]);
-				StartCoroutine(ShowArtifact(g));
+			StartCoroutine (ShowArtifact (g));
 
-				StartCoroutine (StopTexto (g));
-				g.Curar (bonus);
+			StartCoroutine (StopTexto (g));
+			g.SSsalud.value = g.saludMax;
 				if (g.descansando)
 					g.descansando = false;
 				break;
@@ -321,8 +321,9 @@ public class TutorialManager : MonoBehaviour {
 		{ 
 			yield return new WaitForSeconds (1);
 			g.HideText ();
-			g.curar.gameObject.SetActive(false);
 			g.cargar.gameObject.SetActive(false);
+			yield return new WaitForSeconds (1);
+			g.curar.gameObject.SetActive(false);
 		}
 
 

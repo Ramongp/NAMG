@@ -96,9 +96,11 @@ public class Guerrero{
 		//mostrar curacion
 		curar.gameObject.SetActive(true);
 		int currentCuracion = curacion + n;
+		salud += currentCuracion;
 		if (salud + currentCuracion > saludMax) 
 		{
 			currentCuracion = saludMax - salud;
+			salud = saludMax;
 		}
 		SSsalud.value += currentCuracion;
 		text.color = Color.green;

@@ -36,6 +36,7 @@ public class BatallaManager : MonoBehaviour {
 	public SpriteRenderer[] Portraits;
 	public AudioClip[] Sonidos;
 	private AudioSource A;
+	bool firework;
 
 	void Start () {
 		A = this.gameObject.GetComponent<AudioSource> ();
@@ -82,7 +83,20 @@ public class BatallaManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (M.charging) {
+			M.charging = false;
+			if (M.carga < 4) {
+				A.PlayOneShot (Sonidos [0]);
+				if (M.carga.Equals (3))
+					particulas [13].gameObject.SetActive (true);
+			}
+			if (M.carga.Equals (4)) {
+				particulas [13].gameObject.SetActive (false);
+				particulas [14].Play();
+				StartCoroutine (StopMonsterAttack ());
+				M.carga = 0;
+			}
+		}
 		foreach (Guerrero gu in guerreros) {
 			if (gu.text.color.a != 0) {
 				gu.text.transform.Translate(Vector3.up * Time.deltaTime);
@@ -134,6 +148,10 @@ public class BatallaManager : MonoBehaviour {
 			break;
 
 		case (EstadosDeBatalla.WIN):
+			if (!firework) {
+				firework = true;
+				StartCoroutine (FireworkSound ());
+			}
 			break;
 
 		case (EstadosDeBatalla.LOSE):
@@ -159,7 +177,7 @@ public class BatallaManager : MonoBehaviour {
 		action.CurrentGuerrero = gu;
 		CurrenState = EstadosDeBatalla.ESCOGIENDO;
 		action.Show ();
-		if (gu.salud.Equals (gu.saludMax)) {
+		if (gu.SSsalud.value.Equals (gu.saludMax)) {
 			action.buttons [2].interactable = false; //No se puede curar con vida maxima
 			action.buttons [2].GetComponentInChildren<Text> ().text = "Salud Máxima";
 		} 
@@ -215,6 +233,7 @@ public class BatallaManager : MonoBehaviour {
 
 		case "def":
 			//Mostrar Objeto
+			A.PlayOneShot (Sonidos [4]);
 			StartCoroutine (ShowArtifact (g));
 			g.defender.gameObject.SetActive (true);
 			StartCoroutine (StopTexto (g));
@@ -238,7 +257,7 @@ public class BatallaManager : MonoBehaviour {
 		case "SpecialAtkDaño":
 			//Mostrar Objeto
 					StartCoroutine(ShowArtifact(g));
-			A.PlayOneShot (Sonidos [3]);
+			A.PlayOneShot (Sonidos [2]);
 
 			//Animacion special
 			M.RecibirDano (g.atk + bonus);
@@ -253,9 +272,11 @@ public class BatallaManager : MonoBehaviour {
 			//animacion special
 			foreach( Guerrero gu in guerreros)
 			{
-				gu.AumentoAtaque (bonus);
-				StartCoroutine (StopAtaque (gu));
-				StartCoroutine (StopTexto (gu));
+				if (gu.alive) {
+					gu.AumentoAtaque (bonus);
+					StartCoroutine (StopAtaque (gu));
+					StartCoroutine (StopTexto (gu));
+				}
 			}
 			break;
 		case "CuracionGrupal":
@@ -265,8 +286,10 @@ public class BatallaManager : MonoBehaviour {
 			//animacion special
 			foreach( Guerrero gu in guerreros)
 			{
-				gu.Curar (g.curacion,bonus);
-				StartCoroutine (StopTexto (gu));
+				if (!gu.salud.Equals (gu.saludMax)) {
+					gu.Curar (g.curacion, bonus);
+					StartCoroutine (StopTexto (gu));
+				}
 			}
 			break;
 		case "DormirMonstruo":
@@ -283,11 +306,15 @@ public class BatallaManager : MonoBehaviour {
 			StartCoroutine(ShowArtifact(g));
 			//animacion special
 			foreach( Guerrero gu in guerreros)
-			{
-				gu.Defender(bonus);
-				gu.defensagrupal = true;
-				StartCoroutine (StopTexto (gu));
-				StartCoroutine (StopDefensaGrupal(gu));
+			{ 
+				if (gu.alive) {
+					A.PlayOneShot (Sonidos [4]);
+					gu.defender.gameObject.SetActive (true);
+					gu.Defender (bonus);
+					gu.defensagrupal = true;
+					StartCoroutine (StopTexto (gu));
+					StartCoroutine (StopDefensaGrupal (gu));
+				}
 			}
 			break;
 		case "ReducciónTurnoGrupal":
@@ -322,7 +349,7 @@ public class BatallaManager : MonoBehaviour {
 	{
 		yield return new WaitForSeconds (2);
 		//Mostrar Objeto
-		A.PlayOneShot (Sonidos [3]);
+		A.PlayOneShot (Sonidos [2]);
 		g.artifact.overrideSprite = Acciones.CurrentObject.sprite;
 		g.artifact.GetComponent<Animator> ().SetTrigger("Attack");
 		M.heride.SetTrigger ("Heride");
@@ -376,8 +403,9 @@ public class BatallaManager : MonoBehaviour {
 	{ 
 		yield return new WaitForSeconds (1);
 		g.HideText ();
-		g.curar.gameObject.SetActive(false);
 		g.cargar.gameObject.SetActive(false);
+		yield return new WaitForSeconds (1);
+		g.curar.gameObject.SetActive(false);
 	}
 
 	IEnumerator StopTextoMonstruo()
@@ -412,6 +440,8 @@ public class BatallaManager : MonoBehaviour {
 	{
 		
 		yield return new WaitForSeconds (2f);
+		particulas [15].gameObject.SetActive (true);
+		particulas [16].gameObject.SetActive (true);
 		CurrenState = EstadosDeBatalla.WIN;
 		yield return new WaitForSeconds (2f);
 		CurrenState = EstadosDeBatalla.ESCOGIENDO;
@@ -425,11 +455,22 @@ public class BatallaManager : MonoBehaviour {
 
 	void OnGUI(){
 		if (CurrenState.Equals (EstadosDeBatalla.WIN)) {
-			GUIStyle custom = new GUIStyle ("custom");
+			GUIStyle custom = new GUIStyle ();
 			custom.fontSize = 100;
 			custom.alignment = TextAnchor.MiddleCenter;
 			GUI.Button (new Rect (0, 0, Screen.width, Screen.height), "Has Ganado",custom);
 		}
 
+	}
+	IEnumerator StopMonsterAttack()
+	{
+		yield return new WaitForSeconds (0.5f);	
+		particulas [14].Stop();
+	}
+	IEnumerator FireworkSound()
+	{
+		yield return new WaitForSeconds (Random.Range(0.2f,0.4f));	
+		A.PlayOneShot (Sonidos [5]);
+		firework = false;
 	}
 }

@@ -26,6 +26,8 @@ public class FromIntroToTutorial : MonoBehaviour {
 			break;
 		case 1:
 			Fungus.Flowchart.BroadcastFungusMessage ("Level1");
+			if(!BatallaManager.Level.Equals(1))
+			GameObject.Find ("Portal").SetActive (false);
 			break;
 		case 2:
 			Fungus.Flowchart.BroadcastFungusMessage ("Level2");
@@ -35,6 +37,7 @@ public class FromIntroToTutorial : MonoBehaviour {
 			break;
 		case 4:
 			Fungus.Flowchart.BroadcastFungusMessage ("Level4");
+			GameObject.Find ("Portal").SetActive (true);
 			break;
 
 		}
@@ -54,11 +57,11 @@ public class FromIntroToTutorial : MonoBehaviour {
 	}
 	void ToTutorial()
 	{
-		level = 1;
 		StartCoroutine (CambiarNivel ("Tutorial"));
 	}
 	public void ToD2()
 	{
+		level = 1;
 		StartCoroutine (CambiarNivel ("Dialogue2"));
 	}
 
