@@ -112,7 +112,6 @@ public class Craft : MonoBehaviour {
 				if ((CurrentRecipe.ama.Equals (0)) && (CurrentRecipe.nar.Equals (0)) && (CurrentRecipe.ver.Equals (0)) && (CurrentRecipe.lila.Equals (0)) && (CurrentRecipe.azu.Equals (0))) {
 					//Objeto Acabado
 					startcrafting = false;
-					Debug.Log ("Objeto Acabado");
 					MostrarCasillas ();
 					reset.GetComponent<Image> ().color = Color.white;
 					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
@@ -155,7 +154,6 @@ public class Craft : MonoBehaviour {
 					{
 					//Objeto acabado
 					startcrafting = false;
-					Debug.Log ("Objeto Acabado");
 					MostrarCasillas ();
 					reset.GetComponent<Image> ().color = Color.white;
 					acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);
@@ -193,7 +191,6 @@ public class Craft : MonoBehaviour {
 				}
 
 				startcrafting = false;
-				Debug.Log("Objeto Acabado");
 				MostrarCasillas ();
 				reset.GetComponent<Image> ().color = Color.white;
 				acciones.ObjetoHecho (tiempo.value > 0, action, CurrentRecipe.bonus,CurrentRecipe.image);

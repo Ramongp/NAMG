@@ -49,7 +49,7 @@ public class Monstruo{
 			}
 		}
 
-		int i = Random.Range (1, 4);
+		int i = Random.Range (1, 11);
 
 		if (i.Equals (1)) {
 			Guerrero objetivo = guerreros [Random.Range (0, guerreros.Length)];
@@ -110,7 +110,7 @@ public class Monstruo{
 
 	void Cargar(){
 		charging = true;
-		if (carga < 3) {
+		if (carga < 2) {
 			cargar.gameObject.SetActive (true);
 			carga++;
 			text.color = new Color (1, 0.5f, 0, 0.5f); // Color Naranja

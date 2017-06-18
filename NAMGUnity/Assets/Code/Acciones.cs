@@ -37,22 +37,108 @@ public class Acciones : MonoBehaviour {
 			curation = new Recipe[1] {new Recipe(30,4,0,0,4,0,PixelObjects[2],20,20)};
 		}
 		else{
-			craft = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
-			atk = 	new Recipe[6] {new Recipe(2,0,2,0,0,6,PixelObjects[0],20,5),new Recipe(12,0,0,0,0,0,PixelObjects[1],20,5),
-					new Recipe(0,32,0,0,0,0,PixelObjects[2],20,5),new Recipe(10,0,0,0,0,0,PixelObjects[3],20,5),
-					new Recipe(10,8,0,0,0,0,PixelObjects[4],20,5),new Recipe(12,12,0,12,0,0,PixelObjects[5],20,5)};
-			
-			def =	new Recipe[6] {new Recipe(0,24,8,0,0,0,PixelObjects[6],20,5),new Recipe(30,0,15,0,0,0,PixelObjects[7],20,5),
-					new Recipe(0,14,10,0,0,0,PixelObjects[8],20,5),new Recipe(0,0,27,0,0,0,PixelObjects[9],20,5),
-					new Recipe(0,0,56,0,0,0,PixelObjects[10],20,5),new Recipe(8,42,0,0,0,0,PixelObjects[11],20,5)};
-			
-			curation = new Recipe[6] {new Recipe(30,4,0,0,4,0,PixelObjects[12],20,5),new Recipe(0,0,32,0,16,0,PixelObjects[13],20,5),
-					new Recipe(4,0,0,0,8,0,PixelObjects[14],20,5),new Recipe(0,0,25,0,0,0,PixelObjects[15],20,5),
-					new Recipe(0,0,0,0,0,42,PixelObjects[16],20,5),new Recipe(48,0,0,0,0,0,PixelObjects[17],20,5)};
-			
-			spatkCa = new Recipe[2] {new Recipe(20,8,0,12,0,0,PixelObjects[18],20,5),new Recipe(24,0,30,0,0,0,PixelObjects[19],20,5)};
-			spatkAr = new Recipe[2] {new Recipe(0,6,0,0,24,0,PixelObjects[20],20,5),new Recipe(0,0,0,30,6,0,PixelObjects[21],20,5)};
-			spatkMa = new Recipe[2] {new Recipe(0,0,18,0,0,36,PixelObjects[22],20,5),new Recipe(0,0,0,0,18,9,PixelObjects[23],20,5)};
+			switch (BatallaManager.Level) {
+			case 1:
+				craft = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
+				atk = new Recipe[6] {new Recipe (2, 0, 2, 0, 0, 6, PixelObjects [0], 20, 5), new Recipe (12, 0, 0, 0, 0, 0, PixelObjects [1], 20, 5),
+					new Recipe (0, 32, 0, 0, 0, 0, PixelObjects [2], 20, 5), new Recipe (10, 0, 0, 0, 0, 0, PixelObjects [3], 20, 5),
+					new Recipe (10, 8, 0, 0, 0, 0, PixelObjects [4], 20, 5), new Recipe (12, 12, 0, 12, 0, 0, PixelObjects [5], 20, 5)
+				};
+
+				def =	new Recipe[6] {new Recipe (0, 24, 8, 0, 0, 0, PixelObjects [6], 20, 5), new Recipe (30, 0, 15, 0, 0, 0, PixelObjects [7], 20, 5),
+					new Recipe (0, 14, 10, 0, 0, 0, PixelObjects [8], 20, 5), new Recipe (0, 0, 27, 0, 0, 0, PixelObjects [9], 20, 5),
+					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (8, 42, 0, 0, 0, 0, PixelObjects [11], 20, 5)
+				};
+
+				curation = new Recipe[6] {new Recipe (30, 4, 0, 0, 4, 0, PixelObjects [12], 20, 5), new Recipe (0, 0, 32, 0, 16, 0, PixelObjects [13], 20, 5),
+					new Recipe (4, 0, 0, 0, 8, 0, PixelObjects [14], 20, 5), new Recipe (0, 0, 25, 0, 0, 0, PixelObjects [15], 20, 5),
+					new Recipe (0, 0, 0, 0, 0, 42, PixelObjects [16], 20, 5), new Recipe (48, 0, 0, 0, 0, 0, PixelObjects [17], 20, 5)
+				};
+
+				spatkCa = new Recipe[2] {
+					new Recipe (20, 8, 0, 12, 0, 0, PixelObjects [18], 20, 5),
+					new Recipe (0, 24, 0, 30, 0, 0, PixelObjects [19], 20, 5)
+				};
+				spatkAr = new Recipe[2] {
+					new Recipe (0, 6, 0, 0, 24, 0, PixelObjects [20], 20, 5),
+					new Recipe (0, 0, 0, 30, 6, 0, PixelObjects [21], 20, 5)
+				};
+				spatkMa = new Recipe[2] {
+					new Recipe (0, 0, 18, 0, 0, 36, PixelObjects [22], 20, 5),
+					new Recipe (0, 9, 0, 0, 18, 0, PixelObjects [23], 20, 5)
+				};
+				break;
+			case 2:
+				craft = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
+				atk = new Recipe[9] {new Recipe (2, 0, 2, 0, 0, 6, PixelObjects [0], 20, 5), new Recipe (12, 0, 0, 0, 0, 0, PixelObjects [1], 20, 5),
+					new Recipe (0, 32, 0, 0, 0, 0, PixelObjects [2], 20, 5), new Recipe (10, 0, 0, 0, 0, 0, PixelObjects [3], 20, 5),
+					new Recipe (10, 8, 0, 0, 0, 0, PixelObjects [4], 20, 5), new Recipe (12, 12, 0, 12, 0, 0, PixelObjects [5], 20, 5),
+					new Recipe (0, 21, 0, 0, 0, 0, PixelObjects [24], 20, 5),new Recipe (0, 0,24 , 0, 0, 0, PixelObjects [25], 20, 5),
+					new Recipe (0, 16, 0, 0, 0, 0, PixelObjects [26], 20, 5)
+				};
+
+				def =	new Recipe[7] {new Recipe (0, 24, 8, 0, 0, 0, PixelObjects [6], 20, 5), new Recipe (30, 0, 15, 0, 0, 0, PixelObjects [7], 20, 5),
+					new Recipe (0, 14, 10, 0, 0, 0, PixelObjects [8], 20, 5), new Recipe (0, 0, 27, 0, 0, 0, PixelObjects [9], 20, 5),
+					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (8, 42, 0, 0, 0, 0, PixelObjects [11], 20, 5),
+					new Recipe (28, 0, 0, 0, 0, 0, PixelObjects [27], 20, 5)
+				};
+
+				curation = new Recipe[7] {new Recipe (30, 4, 0, 0, 4, 0, PixelObjects [12], 20, 5), new Recipe (0, 0, 32, 0, 16, 0, PixelObjects [13], 20, 5),
+					new Recipe (4, 0, 0, 0, 8, 0, PixelObjects [14], 20, 5), new Recipe (0, 0, 25, 0, 0, 0, PixelObjects [15], 20, 5),
+					new Recipe (0, 0, 0, 0, 0, 42, PixelObjects [16], 20, 5), new Recipe (48, 0, 0, 0, 0, 0, PixelObjects [17], 20, 5),
+					new Recipe (25, 0, 0, 0, 0, 0, PixelObjects [28], 20, 5)
+				};
+
+				spatkCa = new Recipe[2] {
+					new Recipe (20, 8, 0, 12, 0, 0, PixelObjects [18], 20, 5),
+					new Recipe (0, 24, 0, 30, 0, 0, PixelObjects [19], 20, 5)
+				};
+				spatkAr = new Recipe[2] {
+					new Recipe (0, 6, 0, 0, 24, 0, PixelObjects [20], 20, 5),
+					new Recipe (0, 0, 0, 30, 6, 0, PixelObjects [21], 20, 5)
+				};
+				spatkMa = new Recipe[2] {
+					new Recipe (0, 0, 18, 0, 0, 36, PixelObjects [22], 20, 5),
+					new Recipe (0, 9, 0, 0, 18, 0, PixelObjects [23], 20, 5)
+				};
+				break;
+			case 3:
+				craft = GameObject.Find ("CreadorRecetas").GetComponent<Craft> ();
+				atk = new Recipe[12] {new Recipe (2, 0, 2, 0, 0, 6, PixelObjects [0], 20, 5), new Recipe (12, 0, 0, 0, 0, 0, PixelObjects [1], 20, 5),
+					new Recipe (0, 32, 0, 0, 0, 0, PixelObjects [2], 20, 5), new Recipe (10, 0, 0, 0, 0, 0, PixelObjects [3], 20, 5),
+					new Recipe (10, 8, 0, 0, 0, 0, PixelObjects [4], 20, 5), new Recipe (12, 12, 0, 12, 0, 0, PixelObjects [5], 20, 5),
+					new Recipe (0, 21, 0, 0, 0, 0, PixelObjects [24], 20, 5),new Recipe (0, 0,24 , 0, 0, 0, PixelObjects [25], 20, 5),
+					new Recipe (0, 16, 0, 0, 0, 0, PixelObjects [26], 20, 5),new Recipe (49, 0, 0, 0, 0, 0, PixelObjects [29], 20, 5),
+					new Recipe (0, 40, 0, 0, 0, 0, PixelObjects [30], 20, 5),new Recipe (9, 10, 0, 0, 0, 0, PixelObjects [31], 20, 5)
+				};
+
+				def =	new Recipe[8] {new Recipe (0, 24, 8, 0, 0, 0, PixelObjects [6], 20, 5), new Recipe (30, 0, 15, 0, 0, 0, PixelObjects [7], 20, 5),
+					new Recipe (0, 14, 10, 0, 0, 0, PixelObjects [8], 20, 5), new Recipe (0, 0, 27, 0, 0, 0, PixelObjects [9], 20, 5),
+					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (8, 42, 0, 0, 0, 0, PixelObjects [11], 20, 5),
+					new Recipe (28, 0, 0, 0, 0, 0, PixelObjects [27], 20, 5),new Recipe (0, 0, 54, 0, 0, 0, PixelObjects [32], 20, 5)
+				};
+
+				curation = new Recipe[8] {new Recipe (30, 4, 0, 0, 4, 0, PixelObjects [12], 20, 5), new Recipe (0, 0, 32, 0, 16, 0, PixelObjects [13], 20, 5),
+					new Recipe (4, 0, 0, 0, 8, 0, PixelObjects [14], 20, 5), new Recipe (0, 0, 25, 0, 0, 0, PixelObjects [15], 20, 5),
+					new Recipe (0, 0, 0, 0, 0, 42, PixelObjects [16], 20, 5), new Recipe (48, 0, 0, 0, 0, 0, PixelObjects [17], 20, 5),
+					new Recipe (25, 0, 0, 0, 0, 0, PixelObjects [28], 20, 5),new Recipe (0, 0, 0, 14, 0, 0, PixelObjects [33], 20, 5)
+				};
+
+				spatkCa = new Recipe[2] {
+					new Recipe (20, 8, 0, 12, 0, 0, PixelObjects [18], 20, 5),
+					new Recipe (0, 24, 0, 30, 0, 0, PixelObjects [19], 20, 5)
+				};
+				spatkAr = new Recipe[2] {
+					new Recipe (0, 6, 0, 0, 24, 0, PixelObjects [20], 20, 5),
+					new Recipe (0, 0, 0, 30, 6, 0, PixelObjects [21], 20, 5)
+				};
+				spatkMa = new Recipe[2] {
+					new Recipe (0, 0, 18, 0, 0, 36, PixelObjects [22], 20, 5),
+					new Recipe (0, 9, 0, 0, 18, 0, PixelObjects [23], 20, 5)
+				};
+				break;
+			}
+
 		}
 
 	}
@@ -119,7 +205,7 @@ public class Acciones : MonoBehaviour {
 	public void specialattak ()
 	{
 		A.PlayOneShot (sonido);
-		if (CurrentGuerrero.carga < 3) {
+		if (CurrentGuerrero.carga < 1) {
 			Hide ();
 			CurrentGuerrero.Cargar ();
 			BatallaManager.CurrenState = BatallaManager.EstadosDeBatalla.CARGA;

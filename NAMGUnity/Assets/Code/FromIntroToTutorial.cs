@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FromIntroToTutorial : MonoBehaviour {
-	static bool iniciado, animacion,level1;
+	static bool iniciado,level1;
+	public static bool animacion;
 	public static int level;
 	private AudioSource A;
 	// Use this for initialization
@@ -26,8 +27,6 @@ public class FromIntroToTutorial : MonoBehaviour {
 			break;
 		case 1:
 			Fungus.Flowchart.BroadcastFungusMessage ("Level1");
-			if(!BatallaManager.Level.Equals(1))
-			GameObject.Find ("Portal").SetActive (false);
 			break;
 		case 2:
 			Fungus.Flowchart.BroadcastFungusMessage ("Level2");
@@ -37,7 +36,7 @@ public class FromIntroToTutorial : MonoBehaviour {
 			break;
 		case 4:
 			Fungus.Flowchart.BroadcastFungusMessage ("Level4");
-			GameObject.Find ("Portal").SetActive (true);
+			GameObject.Find ("Portal").GetComponent<SpriteRenderer> ().color = new Color (1, 1, 1, 1);
 			break;
 
 		}
@@ -91,6 +90,7 @@ public class FromIntroToTutorial : MonoBehaviour {
 
 	public void ToStart()
 	{
+		level = 0;
 		StartCoroutine (CambiarNivel ("Menu"));
 
 	}

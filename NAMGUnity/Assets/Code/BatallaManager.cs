@@ -57,7 +57,7 @@ public class BatallaManager : MonoBehaviour {
 			new Guerrero (90, 10, 20, 3, 5, anim [2], salud [2], turnos [2], posicion [2].position, 2, "Mago", textos [2], artifacts [2],particulas[8],particulas[9],particulas[10],particulas[11],heridas[2],Portraits[2])
 		};
 		//Le pasa el nivel segun el nivel, el monstruo Original 100 provisional 3
-		M= new Monstruo (200,20,8,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
+		M= new Monstruo (400,20,4,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
 		CurrenState = EstadosDeBatalla.ESPERANDO;
 
 
@@ -85,12 +85,12 @@ public class BatallaManager : MonoBehaviour {
 	void Update () {
 		if (M.charging) {
 			M.charging = false;
-			if (M.carga < 4) {
+			if (M.carga < 3) {
 				A.PlayOneShot (Sonidos [0]);
-				if (M.carga.Equals (3))
+				if (M.carga.Equals (2))
 					particulas [13].gameObject.SetActive (true);
 			}
-			if (M.carga.Equals (4)) {
+			if (M.carga.Equals (3)) {
 				particulas [13].gameObject.SetActive (false);
 				particulas [14].Play();
 				StartCoroutine (StopMonsterAttack ());
@@ -201,7 +201,7 @@ public class BatallaManager : MonoBehaviour {
 
 		else {
 			action.buttons [3].interactable = true;
-			if (gu.carga < 3)
+			if (gu.carga < 1)
 				action.buttons [3].GetComponentInChildren<Text> ().text = "Cargar Ataque Especial";
 			else
 				action.buttons [3].GetComponentInChildren<Text> ().text = "Ataque Especial";
@@ -286,7 +286,7 @@ public class BatallaManager : MonoBehaviour {
 			//animacion special
 			foreach( Guerrero gu in guerreros)
 			{
-				if (!gu.salud.Equals (gu.saludMax)) {
+				if ((!gu.salud.Equals (gu.saludMax))&&(gu.alive)) {
 					gu.Curar (g.curacion, bonus);
 					StartCoroutine (StopTexto (gu));
 				}
@@ -324,8 +324,9 @@ public class BatallaManager : MonoBehaviour {
 			//animacion special
 			foreach( Guerrero gu in guerreros)
 			{
-				gu.ReduccionTiempoTurno (bonus);
+				gu.ReduccionTiempoTurno (2);
 				StartCoroutine (StopTexto (gu));
+				StopReduccionTiempoTurno (gu);
 			}
 			break;
 
@@ -438,19 +439,27 @@ public class BatallaManager : MonoBehaviour {
 
 	IEnumerator Win()
 	{
-		
+		M.portrait.color = Color.gray;
+		M.portrait.gameObject.GetComponent<Animator> ().Stop ();
 		yield return new WaitForSeconds (2f);
 		particulas [15].gameObject.SetActive (true);
 		particulas [16].gameObject.SetActive (true);
 		CurrenState = EstadosDeBatalla.WIN;
 		yield return new WaitForSeconds (2f);
 		CurrenState = EstadosDeBatalla.ESCOGIENDO;
-		FromIntroToTutorial.level = Level + 1;
-		for (int i = 1; i < 12; i++) {
-			GameObject.Find ("Franja " + i.ToString ()).GetComponent<Animator> ().SetTrigger ("Franja");
+		switch (Level) 
+		{
+		case 1:
+			Fungus.Flowchart.BroadcastFungusMessage ("Win 1");
+			break;
+		case 2:
+			Fungus.Flowchart.BroadcastFungusMessage ("Win 2");
+			break;
+		case 3:
+			Fungus.Flowchart.BroadcastFungusMessage ("Win 3");
+			break;
 		}
-		yield return new WaitForSeconds (1.5f);
-		Application.LoadLevel("Dialogue2");
+
 	}
 
 	void OnGUI(){
@@ -464,7 +473,7 @@ public class BatallaManager : MonoBehaviour {
 	}
 	IEnumerator StopMonsterAttack()
 	{
-		yield return new WaitForSeconds (0.5f);	
+		yield return new WaitForSeconds (1);	
 		particulas [14].Stop();
 	}
 	IEnumerator FireworkSound()
@@ -472,5 +481,15 @@ public class BatallaManager : MonoBehaviour {
 		yield return new WaitForSeconds (Random.Range(0.2f,0.4f));	
 		A.PlayOneShot (Sonidos [5]);
 		firework = false;
+	}
+
+	IEnumerator NextLevel()
+	{
+		FromIntroToTutorial.level = Level + 1;
+		for (int i = 1; i < 12; i++) {
+			GameObject.Find ("Franja " + i.ToString ()).GetComponent<Animator> ().SetTrigger ("Franja");
+		}
+		yield return new WaitForSeconds (1.5f);
+		Application.LoadLevel("Dialogue2");
 	}
 }

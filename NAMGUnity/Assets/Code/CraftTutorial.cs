@@ -64,7 +64,6 @@ public class CraftTutorial : MonoBehaviour {
 			if ((r.roj.Equals (0)) && (r.nar.Equals (0)) && (r.lila.Equals (0))) {
 
 			if ((r.ama.Equals (0)) && (r.ver.Equals (0))) {//Pasamos al azul
-				Debug.Log("Pasamos al azul");
 				colcont++;
 			}
 
