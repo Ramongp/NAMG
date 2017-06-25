@@ -51,6 +51,7 @@ public class Guerrero{
 	{
 		 int danoReal = defensa - dano;
 		if (danoReal < 0) {
+			BatallaManager.hurt = true;
 			heride.SetTrigger ("Heride");
 			salud += danoReal;
 			text.color = Color.red;

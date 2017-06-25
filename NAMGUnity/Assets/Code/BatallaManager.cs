@@ -36,6 +36,7 @@ public class BatallaManager : MonoBehaviour {
 	public SpriteRenderer[] Portraits;
 	public AudioClip[] Sonidos;
 	private AudioSource A;
+	public static bool hurt;
 	bool firework;
 
 	void Start () {
@@ -56,9 +57,23 @@ public class BatallaManager : MonoBehaviour {
 			new Guerrero (70, 15, 20, 0, 3, anim [1], salud [1], turnos [1], posicion [1].position, 2, "Arquero", textos [1], artifacts [1],particulas[4],particulas[5],particulas[6],particulas[7],heridas[1],Portraits[1]),
 			new Guerrero (90, 10, 20, 3, 5, anim [2], salud [2], turnos [2], posicion [2].position, 2, "Mago", textos [2], artifacts [2],particulas[8],particulas[9],particulas[10],particulas[11],heridas[2],Portraits[2])
 		};
+		switch (Level) {
+		case 1:
+			Monstruo.SetBool ("Level1", true);
+			M= new Monstruo (150,20,4,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
+			break;
+		case 2:
+			Monstruo.SetBool ("Level1", false);
+			Monstruo.SetBool ("Level2", true);
+			M= new Monstruo (250,20,4,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
+			break;
+		case 3:
+			Monstruo.SetBool ("Level2", false);
+			Monstruo.SetBool ("Level3", true);
+			M= new Monstruo (400,20,4,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
+			break;
+		}
 		//Le pasa el nivel segun el nivel, el monstruo Original 100 provisional 3
-		M= new Monstruo (400,20,4,new Animator(),salud[3],turnos[3],posicion[3].position,heridas[3],particulas[12],textos[3],guerreros[0],guerreros[1],guerreros[2],Portraits[3]);
-		CurrenState = EstadosDeBatalla.ESPERANDO;
 
 
 		M.HideText ();
@@ -66,23 +81,16 @@ public class BatallaManager : MonoBehaviour {
 			gu.HideText ();
 		}
 
-		switch (Level) {
-		case 1:
-			Monstruo.SetBool ("Level1", true);
-			break;
-		case 2:
-			Monstruo.SetBool ("Level1", false);
-			Monstruo.SetBool ("Level2", true);
-			break;
-		case 3:
-			Monstruo.SetBool ("Level2", false);
-			Monstruo.SetBool ("Level3", true);
-			break;
-		}
+
+		CurrenState = EstadosDeBatalla.ESPERANDO;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (hurt) {
+			hurt = false;
+			A.PlayOneShot (Sonidos [6]);
+		}
 		if (M.charging) {
 			M.charging = false;
 			if (M.carga < 3) {
@@ -143,7 +151,9 @@ public class BatallaManager : MonoBehaviour {
 			break;
 
 		case (EstadosDeBatalla.EFECTO):
-			Efecto (action.bonus, action.CurrenAction,action.CurrentGuerrero);
+			this.bonus = action.bonus;
+			bonus += Random.Range (-1, 4);
+			Efecto (action.CurrenAction,action.CurrentGuerrero);
 			CurrenState = EstadosDeBatalla.ESCOGIENDO;
 			break;
 
@@ -208,7 +218,7 @@ public class BatallaManager : MonoBehaviour {
 		}
 	}
 		
-	public void Efecto(int bonus,string action,Guerrero g)
+	public void Efecto(string action,Guerrero g)
 	{		
 		g.artifact.GetComponent<Animator> ().SetBool ("Escogiendo", false);
 		g.Sturno.value = 1;
@@ -219,16 +229,7 @@ public class BatallaManager : MonoBehaviour {
 
 			//Mostrar Objeto
 			StartCoroutine (AttackArtifact (g));
-			//Mostrar Efecto
-			StartCoroutine (StopTextoMonstruo ());
-			//Debug.Log ("Ha intentado atacar");
-			M.RecibirDano (g.atk + bonus);
-			if (M.salud < 1) {
-				StartCoroutine(	Win ());
-			}
-			if (g.descansando)
-				g.descansando = false;
-			//Animacion guerrero
+
 			break;
 
 		case "def":
@@ -354,7 +355,20 @@ public class BatallaManager : MonoBehaviour {
 		g.artifact.overrideSprite = Acciones.CurrentObject.sprite;
 		g.artifact.GetComponent<Animator> ().SetTrigger("Attack");
 		M.heride.SetTrigger ("Heride");
-		CurrenState = EstadosDeBatalla.ESPERANDO;
+		//Mostrar Efecto
+		StartCoroutine (StopTextoMonstruo ());
+		//Debug.Log ("Ha intentado atacar");
+		M.RecibirDano (g.atk + bonus);
+		if (M.salud < 1) {
+			StartCoroutine (Win ());
+		}
+		else {
+			CurrenState = EstadosDeBatalla.ESPERANDO;
+		}
+		if (g.descansando)
+			g.descansando = false;
+		//Animacion guerrero
+	
 	}
 
 	IEnumerator StopDefensa(Guerrero g)
@@ -466,6 +480,7 @@ public class BatallaManager : MonoBehaviour {
 		if (CurrenState.Equals (EstadosDeBatalla.WIN)) {
 			GUIStyle custom = new GUIStyle ();
 			custom.fontSize = 100;
+			custom.font= (Font)Resources.Load("Fonts/IMMORTAL");
 			custom.alignment = TextAnchor.MiddleCenter;
 			GUI.Button (new Rect (0, 0, Screen.width, Screen.height), "Has Ganado",custom);
 		}

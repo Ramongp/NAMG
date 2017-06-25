@@ -47,7 +47,7 @@ public class Acciones : MonoBehaviour {
 
 				def =	new Recipe[6] {new Recipe (0, 24, 8, 0, 0, 0, PixelObjects [6], 20, 5), new Recipe (30, 0, 15, 0, 0, 0, PixelObjects [7], 20, 5),
 					new Recipe (0, 14, 10, 0, 0, 0, PixelObjects [8], 20, 5), new Recipe (0, 0, 27, 0, 0, 0, PixelObjects [9], 20, 5),
-					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (8, 42, 0, 0, 0, 0, PixelObjects [11], 20, 5)
+					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (42, 8, 0, 0, 0, 0, PixelObjects [11], 20, 5)
 				};
 
 				curation = new Recipe[6] {new Recipe (30, 4, 0, 0, 4, 0, PixelObjects [12], 20, 5), new Recipe (0, 0, 32, 0, 16, 0, PixelObjects [13], 20, 5),
@@ -79,7 +79,7 @@ public class Acciones : MonoBehaviour {
 
 				def =	new Recipe[7] {new Recipe (0, 24, 8, 0, 0, 0, PixelObjects [6], 20, 5), new Recipe (30, 0, 15, 0, 0, 0, PixelObjects [7], 20, 5),
 					new Recipe (0, 14, 10, 0, 0, 0, PixelObjects [8], 20, 5), new Recipe (0, 0, 27, 0, 0, 0, PixelObjects [9], 20, 5),
-					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (8, 42, 0, 0, 0, 0, PixelObjects [11], 20, 5),
+					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (42, 8, 0, 0, 0, 0, PixelObjects [11], 20, 5),
 					new Recipe (28, 0, 0, 0, 0, 0, PixelObjects [27], 20, 5)
 				};
 
@@ -114,7 +114,7 @@ public class Acciones : MonoBehaviour {
 
 				def =	new Recipe[8] {new Recipe (0, 24, 8, 0, 0, 0, PixelObjects [6], 20, 5), new Recipe (30, 0, 15, 0, 0, 0, PixelObjects [7], 20, 5),
 					new Recipe (0, 14, 10, 0, 0, 0, PixelObjects [8], 20, 5), new Recipe (0, 0, 27, 0, 0, 0, PixelObjects [9], 20, 5),
-					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (8, 42, 0, 0, 0, 0, PixelObjects [11], 20, 5),
+					new Recipe (0, 0, 56, 0, 0, 0, PixelObjects [10], 20, 5), new Recipe (42, 8, 0, 0, 0, 0, PixelObjects [11], 20, 5),
 					new Recipe (28, 0, 0, 0, 0, 0, PixelObjects [27], 20, 5),new Recipe (0, 0, 54, 0, 0, 0, PixelObjects [32], 20, 5)
 				};
 

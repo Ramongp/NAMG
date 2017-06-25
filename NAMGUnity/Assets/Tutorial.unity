@@ -18414,6 +18414,22 @@ Prefab:
       propertyPath: m_Name
       value: FondoGameplay
       objectReference: {fileID: 0}
+    - target: {fileID: 4988995998540018, guid: 6b660139d96943d4c8aac56daf613207, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -10.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988995998540018, guid: 6b660139d96943d4c8aac56daf613207, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 4.0337186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167391926060314, guid: 6b660139d96943d4c8aac56daf613207, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -9.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167391926060314, guid: 6b660139d96943d4c8aac56daf613207, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3.9259322
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b660139d96943d4c8aac56daf613207, type: 2}
   m_IsPrefabParent: 0
@@ -41652,7 +41668,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 1e5d3090eaaf2d54d9cc14cc86a6c027, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -48577,7 +48593,8 @@ AudioSource:
   m_GameObject: {fileID: 1120712855}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243806691657827084, guid: 8fcdd23957844b64ba10b5d9c25a8e70,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -54670,7 +54687,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1365135562}
   selectedCommands:
-  - {fileID: 1365135707}
+  - {fileID: 1365135570}
   variables: []
   description: 
   stepPause: 0
@@ -55105,7 +55122,7 @@ MonoBehaviour:
   itemId: 17
   indentLevel: 0
   storyText: "As\xED que supongo que lo correcto ser\xE1 que cargues tu ataque especial,
-    en este turno no har\xE1s nada pero si lo cargas tres veces podr\xE1s usar un
+    en este turno acumular\xE1s energia y en el siguiente turno podr\xE1s usar un
     artefacto con efectos muy beneficiosos para la batalla."
   description: 
   character: {fileID: 1535623725}
@@ -55839,8 +55856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 47
   indentLevel: 0
-  storyText: "Namg, selecciona curaci\xF3n y crearemos un artefacto para aumentar
-    su salud."
+  storyText: Namg, selecciona "Curar" y crearemos un artefacto para aumentar su salud.
   description: 
   character: {fileID: 1535623725}
   portrait: {fileID: 0}
@@ -56073,8 +56089,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 448
-    y: 112
+    x: 446.9011
+    y: 110.9011
     width: 120
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -57477,7 +57493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 101
   indentLevel: 0
-  storyText: "\xA1Estamos perdidos!"
+  storyText: "\xA1SOLO PODEMOS USAR COLORES PRIMARIOS!\xA1ESTAMOS PERDIDOS!"
   description: 
   character: {fileID: 1535623725}
   portrait: {fileID: 0}
@@ -57503,8 +57519,7 @@ MonoBehaviour:
   itemId: 100
   indentLevel: 0
   storyText: "Color... \xA1Eso es! Los colores que salen del portal son primarios,
-    solo tenemos el rojo, el amarillo y el azul. No tenemos acceso a energ\xEDa de
-    color verde."
+    solo tenemos el rojo, el amarillo y el azul."
   description: 
   character: {fileID: 1535623725}
   portrait: {fileID: 0}
@@ -58012,7 +58027,7 @@ MonoBehaviour:
   indentLevel: 0
   storyText: "Es verdad, casi se me olvida. Debajo del recetario hay una barra. Si
     acabas el objeto antes de que su energ\xEDa se consuma el objeto resultante obtiene
-    un bonus de efecto, ser\xE1 muy \xFAtil en la batalla."
+    un BONUS de efecto, ser\xE1 muy \xFAtil en la batalla."
   description: 
   character: {fileID: 1535623725}
   portrait: {fileID: 0}
@@ -71823,7 +71838,8 @@ AudioSource:
   m_GameObject: {fileID: 1714604130}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243806691657827084, guid: 8fcdd23957844b64ba10b5d9c25a8e70,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -75926,7 +75942,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4389894441605514, guid: 76c883c01ad04fb45a10f2a0f8d0f569, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.1
+      value: 7.47
       objectReference: {fileID: 0}
     - target: {fileID: 4389894441605514, guid: 76c883c01ad04fb45a10f2a0f8d0f569, type: 2}
       propertyPath: m_LocalPosition.y
@@ -75964,7 +75980,7 @@ Prefab:
         type: 3}
     - target: {fileID: 4389894441605514, guid: 76c883c01ad04fb45a10f2a0f8d0f569, type: 2}
       propertyPath: m_LocalScale.x
-      value: 4.5943108
+      value: 4.7805877
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76c883c01ad04fb45a10f2a0f8d0f569, type: 2}
@@ -81891,7 +81907,8 @@ AudioSource:
   m_GameObject: {fileID: 2076171825}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243806691657827084, guid: 8fcdd23957844b64ba10b5d9c25a8e70,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

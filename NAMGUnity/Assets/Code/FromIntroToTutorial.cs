@@ -12,7 +12,7 @@ public class FromIntroToTutorial : MonoBehaviour {
 		A = this.gameObject.GetComponent<AudioSource> ();
 		level1 = true;
 		if (!iniciado) {
-			Screen.SetResolution (1024, 600, true);
+			//Screen.SetResolution (1024, 600, true);
 			iniciado = true;
 			level = 0;
 		}
